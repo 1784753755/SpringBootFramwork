@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AuthorGroupDao">
+
+
+    <resultMap id="author" type="com.model.AuthorGroup">
+        <id property="authorId" column="author_id"/>
+        <result property="uid" column="uid"/>
+        <result property="webUrl" column="web_url"/>
+        <result property="status" column="status"/>
+        <result property="addTime" column="addtime"/>
+        <result property="list" column="list"/>
+        <result property="webNames"  column="web_names"/>
+        <result property="type"  column="type"/>
+        <result property="grouping" column="grouping"/>
+        <result property="movement" column="Movement"/>
+    </resultMap>
+<!--根据webUrl 获取AuthorGroup-->
+  <select id="getAuthor" resultMap="author">
+       select * from author_group where web_url=#{domainHostUrl}
+  </select>
+    <!--根据获取对应页面的AuthorGroup-->
+  <select id="getAuthorGroupBySelect" resultMap="author">
+      select * from  author_group
+  </select>
+    <select id="getCount" resultType="java.lang.Integer">
+        SELECT count(*) from author_group
+    </select>
+    <select id="getAuthorById" resultMap="author">
+        select * from author_group where author_id=#{AuthorId}
+    </select>
+    <select id="selectDomainName" resultMap="author">
+        SELECT * FROM author_group where web_url=#{domainName}
+    </select>
+    <!--查询-->
+    <select id="selectByName" resultMap="author">
+        SELECT  * from author_group where web_names=#{name}
+    </select>
+      <select id="selectByGroup" resultMap="author">
+        SELECT  * from author_group where grouping=#{group}
+    </select>
+      <select id="selectByType" resultMap="author">
+        SELECT  * from author_group where type=#{type}
+    </select>
+      <select id="selectByMovement" resultMap="author">
+        SELECT  * from author_group where Movement=#{movement}
+    </select>
+    <update id="updateAuthorGroup">
+        UPDATE  author_group set uid=#{uid},web_url=#{webUrl},status=#{status},addtime=#{addTime}
+        ,list=#{list},web_names=#{webNames},type=#{type},grouping=#{grouping},Movement=#{movement} WHERE author_id=#{authorId}
+    </update>
+    <delete id="delAuthorGroup">
+        DELETE  FROM  author_group where author_id=#{delAuthorId}
+    </delete>
+    <insert id="saveAuthorGroup" parameterType="com.model.AuthorGroup">
+        INSERT INTO  author_group (author_id,uid,web_url,status,addtime,list,web_names,type,grouping,Movement)VALUES (#{authorId},#{uid},#{webUrl},#{status},#{addTime},#{list},#{webNames},#{type},#{grouping},#{movement})
+    </insert>
+</mapper>

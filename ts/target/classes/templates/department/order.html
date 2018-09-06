@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+
+<head>
+
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/H-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/H-ui.admin.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/layui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="http://va.bpalo.com/static/admin/hui/lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+
+    <title>建材列表</title>
+<body class="pos-r" style="margin-top: 10px">
+
+<div style="margin-left:30px;">
+    <nav class="breadcrumb">
+        <i class="Hui-iconfont"></i> 首页
+        <span class="c-gray en">&gt;</span> 订单管理
+        <span class="c-gray en">&gt;</span> 订单列表
+        <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+           href="javascript:location.replace(location.href);" title="刷新">
+            <i class="Hui-iconfont">
+            </i>
+        </a>
+    </nav>
+    <div class="page-container">
+
+
+        <div class="text-c">
+            <button name="" class="btn btn-success" onclick="explordProduct()"><i class="Hui-iconfont">&#xe665;</i> 导出
+            </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <select type="text" name="" placeholder=" 类别" style="width:250px"
+                    class="input-text" id="selectSearch">
+                <option value="0" selected="selected">选择查询的方式</option>
+                <option value="1">网站名称</option>
+                <option value="2">商品名称</option>
+                <option value="3">客户姓名</option>
+                <option value="4">客户手机</option>
+                <option value="5">ip查询</option>
+                <option value="6">订单号查询</option>
+            </select>
+            <button name="" class="btn btn-success" onclick="getProductBycategory()"><i
+                    class="Hui-iconfont">&#xe665;</i>查询方式
+            </button>
+
+            <input type="text" name="" id="searchProductName" placeholder="输入对应的查询字段" style="width:250px"
+                   class="input-text">
+            <button name="" class="btn btn-success" onclick="searchProduct()"><i class="Hui-iconfont">&#xe665;</i> 搜索订单
+            </button>
+            <br>
+            <button name="" class="btn btn-success"  style="border-radius: 20px;"><i class="Hui-iconfont">&#xe665;</i>
+                输入查询时间
+            </button>
+            <input type="text" name="" id="from" placeholder="开始时间" style="width:250px" class="input-text form-control layer-date">
+            到
+            <input type="text" name="" id="to" placeholder="结束时间" style="width:250px" class="input-text form-control layer-date">
+            <button name="" class="btn btn-success" onclick="searchProductByTime()" style="border-radius: 20px;"><i class="Hui-iconfont">&#xe665;</i> 搜索订单
+            </button>
+        </div>
+        <div class="mt-20">
+            <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                <tr class="text-c">
+                    <th width="40"><input name="" type="checkbox" value=""></th>
+                    <th width="40">订单号</th>
+                    <th width="60">域名</th>
+                    <th width="60">ip订单数</th>
+                    <th width="60">phone订单</th>
+                    <th width="60">总价</th>
+                    <th width="60">客户姓名</th>
+                    <th width="100">客户手机</th>
+                    <th width="100">邮费</th>
+                    <th width="100">下单IP</th>
+                    <th width="100">下单时间</th>
+                    <th width="100">来源</th>
+                    <th width="100">链接来源</th>
+                    <th width="100">操作</th>
+                </tr>
+                </thead>
+                <tbody id="tableContent">
+
+                </tbody>
+            </table>
+            <div class="" role="status" aria-live="polite" style="display: inline">每页显示<span><select
+                    id="selected" onchange="changeSize()"><option selected="selected">7</option><option>10</option><option>20</option></select></span>
+            </div>
+            <div class="" id="page" style="display: inline;float:right">
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .button_type {
+        background-color: #3bb4f2;
+        border: 0px solid;
+        padding: 3px 5px;
+        border-radius: 7px;
+        color: white;
+        cursor: pointer;
+    }
+</style>
+
+<!--_footer 作为公共模版分离出去-->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="../static/admin_ui/js/jquery-3.3.1.min.js"></script>
+
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript" src="../static/admin_ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="../static/admin_ui/js/H-ui.admin.js"></script>
+<!-- <script src="http://va.bpalo.com/static/admin/hui/lib/uploadify/jquery.uploadify.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="http://va.bpalo.com/static/admin/hui/lib/uploadify/uploadify.css"> -->
+<script type="text/javascript" src="../static/admin_ui/js/admin.js"></script>
+<script type="text/javascript" src="../static/admin_ui/js/common.js"></script>
+
+<!--请在下方写此页面业务相关的脚本-->
+
+<script type="text/javascript" src="../static/admin_ui/js/jquery.contextmenu.r2.js"></script>
+
+
+<script type="text/javascript">
+    var max = 0;
+    $(function () {
+        setContent($('#selected').val(), 1);
+    });
+
+   function searchProduct() {
+             /* <option value="1">网站名称</option>
+                <option value="2">商品名称</option>
+                <option value="3">客户姓名</option>
+                <option value="4">客户手机</option>
+                <option value="5">IP查询</option>
+                <option value="6">订单号查询</option>*/
+/**/
+$.post("/getOrderByMethod.do",{'way':$("#selectSearch option:selected").val(),"content":$("#searchProductName").val()},function (data) {
+    console.log(data)
+})
+   }
+
+    function setContent(pageSize, pageIndex) {
+        console.log("ted")
+        /*/getCategoryCount.do  pageSize  pageIndex*/
+        $.post('/getAllOrders.do', {'pageIndex': pageIndex, 'pageSize': pageSize}, function (data) {
+            console.log(data)
+            var tbody = "";
+            var statusShow;
+            var type;
+            for (var i = 0; i < data.length; i++) {
+                tbody += "<tr class='text-c va-m'>" +
+                    "<td width='40'>" +
+                    "  <input name='goods_names[]' type='checkbox' value='" + data[i].orderId + "'></td>" +
+                    "<td>" + data[i].orderNum + "</td>" +
+                    "<td>" + data[i].domainHostUrl + "</td>" +
+                    "<td>" + data[i].ipNumb + "</td>" +
+                    "<td>" + data[i].phoneNumb + "</td>" +
+                    "<td>" + data[i].goodsTatalPrice + "</td>" +
+                    "<td>" + data[i].userName + "</td>" +
+                    "<td>" + data[i].userPhone + "</td>" +
+                    "<td>" + 0 + "</td>" +
+                    "<td>" + data[i].ip + "</td>" +
+                    "<td>" + data[i].createTime + "</td>" +
+                    "<td>" + data[i].source + "</td>" +
+                    "<td>" + 0 + "</td>" +
+                    "<td class='td-manage'><a class='button_type' style='background-color: #3A3ACE' href='product-order-detail.html?id=" + data[i].orderId + "' title='详情'>详情</a>" +
+                    " <button class='button_type' style='background-color: red;margin-left: 10px' onclick='delete_category(" + data[i].categoryId + ")'>删除</button></td>" +
+                    "</tr>";
+            }
+            $("#tableContent").html(tbody);
+            changeSize();
+        })
+    }
+
+    function changeSize() {
+        $.post('/getCountOrder.do', {}, function (ds) {
+            max = 0;
+            var size = $('#selected').val();
+
+            var all = ds % size == 0 ? ds / size : Math.ceil(ds / size);
+            var index = 1;
+            var content =
+                "<a href='javascript:void(0)' onclick='prePage()' id='FirstIndex'>上一页</a>";
+            for (var j = 0; j < all; j++) {
+                max++;
+                content += "&nbsp;&nbsp;&nbsp;<a href='javascript:void(0)' onclick='currentPage(this.id)' id='onIndex" + j + "'>" + "<button style='width:30px;background-color: #0f9ae0;'>" + (j + 1) + "</button></a>";
+            }
+            content += "<a href='javascript:void(0)' onclick='nextPage()' id='LastIndex'>下一页</a>";
+            $('#page').html(content);
+
+        });
+    }
+
+    /*再根据对应的参数值获取*/
+
+    function currentPage(indexId) {
+        globalIndex = $("#" + indexId).text();
+        setContent($('#selected').val(), globalIndex);
+        /* console.log($('#selected').val(),globalIndex);*/
+    }
+
+    function prePage() {
+
+        if (globalIndex > 1)
+            setContent($('#selected').val(), --globalIndex);
+        else
+            setContent($('#selected').val(), 1);
+    }
+
+    function nextPage() {
+
+        if (globalIndex < max)
+            setContent($('#selected').val(), (++globalIndex));
+        else {
+            setContent($('#selected').val(), max);
+        }
+    }
+
+
+    function update_status(id) {
+        var url = "/limitStatus.do"
+        $.post(url, {'id': id}, function (data) {
+            alert(data);
+            window.location.reload();
+        });
+    }
+
+    function update_type(id) {
+        var url = "/limitType.do";
+        $.post(url, {'id': id}, function (data) {
+            alert(data);
+            window.location.reload();
+        });
+
+    }
+
+    function delete_category(id) {
+        var url = "/delCategory.do";
+        $.post(url, {'id': id}, function (data) {
+            alert(data);
+            window.location.reload();
+        });
+    }
+
+    /*产品-添加*/
+    function product_add(title, url) {
+        var index = layer.open({
+            type: 2,
+            title: title,
+            content: url
+        });
+        layer.full(index);
+    }
+
+    /*产品-删除*/
+    function product_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            $.ajax({
+                type: 'POST',
+                url: '',
+                dataType: 'json',
+                success: function (data) {
+                    $(obj).parents("tr").remove();
+                    layer.msg('已删除!', {icon: 1, time: 1000});
+                },
+                error: function (data) {
+                    console.log(data.msg);
+                },
+            });
+        });
+    }
+</script>
+ <script>
+  $( function() {
+    var dateFormat = "mm/dd/yy",
+      from = $( "#from" )
+        .datepicker({
+          defaultDate: "+1w",
+          changeMonth: true,
+          numberOfMonths: 3
+        })
+        .on( "change", function() {
+          to.datepicker( "option", "minDate", getDate( this ) );
+        }),
+      to = $( "#to" ).datepicker({
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 3
+      })
+      .on( "change", function() {
+        from.datepicker( "option", "maxDate", getDate( this ) );
+      });
+ /*$( "#datepicker" ).datepicker( "option", "dateFormat", $( this ).val() );*/
+    function getDate( element ) {
+      var date;
+      try {
+        date = $.datepicker.parseDate( dateFormat, element.value );
+      } catch( error ) {
+        date = null;
+      }
+      return date;
+    }
+  } );
+  </script>
+</body>
+</html>

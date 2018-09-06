@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.ProductCategoryDao">
+
+
+    <resultMap id="category" type="com.model.ProductCategory">
+        <id property="categoryId" column="category_id"/>
+        <result property="title" column="title"/>
+        <result property="upper" column="upper"/>
+        <result property="status" column="status"/>
+        <result property="list" column="list"/>
+        <result property="img" column="img"/>
+        <result property="createTime"  javaType="java.lang.String" column="create_time"/>
+        <result property="uid" javaType="java.lang.Integer" column="uid"/>
+        <result property="type" column="type"/>
+    </resultMap>
+    <select id="getAllCategoryAll" resultMap="category">
+        SELECT  * from  goods_category
+    </select>
+
+    <select id="getAllCategories" resultMap="category">
+        SELECT  * from  goods_category  ORDER BY list DESC
+    </select>
+
+    <select id="SelectCategoryById" resultMap="category">
+        SELECT  * from  goods_category WHERE category_id=#{CgryId}
+    </select>
+
+    <select id="Count" resultType="java.lang.Integer">
+        SELECT count(*) from goods_category;
+    </select>
+
+    <update id="Update" parameterType="com.model.ProductCategory">
+        UPDATE goods_category set title=#{title},UPPER=#{upper} ,status=#{status},list=#{list},
+        img=#{img},create_time=#{createTime},uid=#{uid},type=#{type} where category_id=#{categoryId};
+    </update>
+
+    <delete id="Delete" >
+        DELETE  from goods_category WHERE category_id=#{ID};
+    </delete>
+
+    <insert id="addproductCagegory" parameterType="com.model.ProductCategory">
+        INSERT  INTO goods_category(
+        title,
+        uid,
+        create_time,
+        img,
+        list,
+        status,
+        upper,
+        type)VALUES (
+        #{title},
+        #{uid},
+        #{createTime},
+        #{img},
+        #{list},
+        #{status},
+        #{upper},
+        #{type}
+        )
+    </insert>
+</mapper>

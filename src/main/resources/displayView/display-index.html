@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Website Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/iconfont.css">
+    <!--    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/iconfont.js"></script>
+    <style>
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+
+        .home_goods_pricebar {
+            padding: 15px;
+            font-size: 13px;
+        }
+
+        .span_product {
+            color: red;
+            font-weight: 700;
+        }
+
+        .img_product_category {
+            height: 80px;
+        }
+
+        .img_product {
+            width: 100%;
+            height: 117px;
+        }
+
+        .name_product {
+            text-align: center;
+        }
+
+        .am-text-gary {
+            font-size: 8px;
+            font-weight: 300;
+        }
+    </style>
+</head>
+<body>
+
+<!--navbar
+
+
+
+
+
+navbar-inner
+
+navbar-fixed-top  //悬浮顶部样式
+
+ //悬浮底部样式
+
+container-fluid-->
+<!--导航-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">链接</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">链接</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">链接</a>
+            </li>
+        </ul>
+    </div>
+
+    <a class="navbar-brand" href="#"><img src="img/logo.png" style="height: 24px;background-color: #ffffffb3"></a>
+
+    <a class="navbar-brand" href="#">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-sousuo1"></use>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-gouwucheman"></use>
+        </svg>
+    </a>
+</nav>
+
+<!--轮播-->
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+    <!-- 指示符 -->
+    <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+    </ul>
+
+    <!-- 轮播图片 -->
+    <div class="carousel-inner">
+        <div class="carousel-item active" style="background-repeat: no-repeat;text-align: center">
+            <img src="img/sl1.jpg" style="height: 200px;    width: 100%;">
+        </div>
+        <div class="carousel-item" style="background-repeat: no-repeat;text-align: center">
+            <img src="img/sl2.jpg" style="height: 200px;    width: 100%;">
+        </div>
+        <div class="carousel-item" style="background-repeat: no-repeat;text-align: center">
+            <img src="img/sl3.jpg" style="height: 200px;    width: 100%;">
+        </div>
+        <div class="carousel-item" style="background-repeat: no-repeat;text-align: center">
+            <img src="img/sl4.jpg" style="height: 200px;    width: 100%;">
+        </div>
+    </div>
+
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+<!--分类展示-->
+<div class="row">
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat ;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v1.jpg" class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v2.jpg" class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v2.jpg" class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v2.jpg" class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v3.jpg"  class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v3.jpg"  class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v4.jpg" class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-3 col-md-3" style="background-repeat: no-repeat;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/v4.jpg"  class="img_product_category"
+                 alt="...">
+        </a>
+    </div>
+</div>
+<!--产品-->
+<div class="container" style="margin-top:30px">
+
+    <div class="row" id="product_body">
+    </div>
+</div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p style="font-size: 3px;"> 溫馨提示：支持貨到付款+免郵費！收到貨有任何疑問請聯繫我們在線客服! 也可隨時聯繫:<a>service@buury.com</a>。同時請附上您的姓名及聯繫方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！
+        Copyright @ 2015 buury.com All Rights Reserved
+    </p>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setContent();
+    });
+
+    /*设置body内容*/
+    function setContent() {
+        $.post("/getProduct.html", {}, function (data) {
+            var tbody = "";
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                tbody += "<div class='col-md-3 col-sm-6 col-xs-6' style='background-repeat: no-repeat'>" +
+                    " <a href='display-detail.html?&id="+data[i].id+"'><img src='" + data[i].imgMain + "' class='img_product'>" +
+                    " <div class='home_goods_pricebar'>" +
+                    "  <div style='overflow: hidden; white-space: nowrap; text-overflow: ellipsis;font-weight: 500; color:black'>" + data[i].name + " </div> </a>" +
+                    " <span class='span_product'>HK$ " + data[i].nowPrice + "&nbsp;&nbsp;</span>" +
+                    " <del class='am-text-gary'>參考價HK$ " + data[i].oldPrice + "</del>" +
+                    "  </div>" +
+                    "  </div>"
+            }
+            $("#product_body").html(tbody);
+        });
+
+    }
+
+    /*设置va*/
+</script>
+</body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+    <a class="navbar-brand" href="#">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1535446520915"
+             class="icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="3043" width="200" height="200">
+            <defs>
+                <style type="text/css"/>
+            </defs>
+            <path d="M953.23019 398.269749c-0.629333-0.672312-398.536832-322.714959-398.536832-322.714959-0.480954-0.388856-0.979304-0.7552-1.493004-1.096984-30.241768-20.150946-62.685691-19.065218-91.351568 3.051499-0.11154 0.085958-0.223081 0.173962-0.334621 0.26299L67.487044 395.337977c-0.726547 0.586354-1.412163 1.221828-2.050706 1.904373-25.678846 27.429723-24.255427 70.635757 3.177366 96.317673l1.475608 1.381463c25.317619 23.700795 64.076364 24.317848 90.086761 2.701528l0 429.144944-56.923454 0c-11.050684 0-20.008706 8.959046-20.008706 20.008706 0 11.04966 8.958022 20.008706 20.008706 20.008706l805.094338 0c11.04966 0 20.008706-8.959046 20.008706-20.008706 0-11.04966-8.959046-20.008706-20.008706-20.008706L858.752422 926.787958 858.752422 498.879168c11.540847 9.519818 25.810852 14.94948 41.012066 15.4509 0.76748 0.025583 1.533936 0.038886 2.298346 0.038886 17.349133 0 33.790594-6.485715 46.509267-18.392906l1.484817-1.391696c13.287631-12.43931 20.934798-29.308513 21.534456-47.499827C972.19103 428.894234 965.670523 411.55738 953.23019 398.269749zM818.733986 822.346257 703.555757 822.346257 703.555757 577.678862c0-40.414455-32.384571-73.29226-72.65474-73.29226s-72.65474 32.877805-72.65474 73.29226l0 244.667396L200.193485 822.346257 200.193485 466.059692l308.683385-237.884922 309.857117 239.07912L818.733986 822.346257zM598.155219 925.700183 598.155219 577.678862c0-18.34788 14.540158-33.274848 32.745798-33.274848s32.745798 14.926968 32.745798 33.274848l0 348.021322L598.155219 925.700183zM200.193485 862.255199l358.052792 0 0 64.531735L200.193485 926.786934 200.193485 862.255199zM703.555757 926.787958l0-64.531735 115.178229 0 0 64.531735L703.555757 926.787958zM931.59545 445.76753c-0.248663 7.507998-3.403516 14.471596-8.881274 19.597337l-1.486864 1.391696c-5.482875 5.134951-12.617365 7.863085-20.145829 7.577582-7.509021-0.246617-14.471596-3.403516-19.606547-8.887414-0.734734-0.784876-1.531889-1.509377-2.384303-2.167363L521.107425 187.067536c-3.598968-2.778276-7.912204-4.167926-12.222369-4.167926-4.307096 0-8.615215 1.38658-12.214183 4.15974L139.585105 462.244806c-0.854461 0.657986-1.654686 1.385557-2.39249 2.173502-10.602476 11.320836-28.433586 11.906168-39.756469 1.306762l-1.475608-1.38044c-11.023054-10.321066-11.870352-27.499307-2.124384-38.84675L486.447021 109.074208c14.536065-11.139711 28.490891-11.713786 43.843554-1.786693l394.529565 319.227532C929.430134 431.871031 931.829787 438.660668 931.59545 445.76753z"
+                  p-id="3044"/>
+            <path d="M366.376365 506.575454c-40.270169 0-73.166393 32.877805-73.166393 73.290213l0 142.197606 146.332786 0L439.542758 579.865667C439.542758 539.453259 406.646534 506.575454 366.376365 506.575454zM399.633816 682.153308l-65.491597 0 0-102.288664c0-18.345834 14.542204-33.272801 32.745798-33.272801s32.745798 14.926968 32.745798 33.272801L399.633816 682.153308z"
+                  p-id="3045"/>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="display-car.html">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-gouwucheman"></use>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+         <svg class="icon" style="width: 25px; height: 28px;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11258"><path d="M870.195543 715.396433 870.195543 433.524694 650.96447 433.524694 650.96447 182.973288 369.089661 182.973288l0 187.91381L149.856541 370.887099 149.856541 715.396433l-62.638619 0 0 125.278261 845.617263 0L932.835186 715.396433 870.195543 715.396433zM838.876234 464.844004 838.876234 715.396433 650.96447 715.396433 650.96447 464.844004 838.876234 464.844004zM400.408971 214.291574l219.235167 0 0 219.23312L619.644137 715.396433 400.408971 715.396433 400.408971 370.887099 400.408971 214.291574zM181.175851 402.206408 369.089661 402.206408 369.089661 715.396433 181.175851 715.396433 181.175851 402.206408zM901.514853 809.354362 118.537232 809.354362l0-62.638619 31.318286 0 219.23312 0 31.31931 0 219.235167 0 31.31931 0 219.231073 0 31.31931 0L901.512806 809.354362z" p-id="11259"></path></svg>
+       </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" style="width: 25px; height: 28px;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="17612"><path d="M878.159424 565.40635l-327.396585 0c-11.307533 0-20.466124 9.168824-20.466124 20.466124l0 327.396585c0 11.307533 9.15859 20.466124 20.466124 20.466124l327.396585 0c11.2973 0 20.466124-9.15859 20.466124-20.466124l0-327.396585C898.625548 574.575174 889.456724 565.40635 878.159424 565.40635zM857.6933 892.802936l-286.464337 0 0-286.464337 286.464337 0L857.6933 892.802936zM430.606225 565.40635l-327.396585 0c-11.2973 0-20.466124 9.168824-20.466124 20.466124l0 327.396585c0 11.307533 9.168824 20.466124 20.466124 20.466124l327.396585 0c11.307533 0 20.466124-9.15859 20.466124-20.466124l0-327.396585C451.072349 574.575174 441.913758 565.40635 430.606225 565.40635zM410.140101 892.802936l-286.464337 0 0-286.464337 286.464337 0L410.140101 892.802936zM430.606225 115.601878l-327.396585 0c-11.2973 0-20.466124 9.15859-20.466124 20.466124l0 327.386352c0 11.307533 9.168824 20.466124 20.466124 20.466124l327.396585 0c11.307533 0 20.466124-9.15859 20.466124-20.466124l0-327.386352C451.072349 124.760468 441.913758 115.601878 430.606225 115.601878zM410.140101 442.98823l-286.464337 0 0-286.454104 286.464337 0L410.140101 442.98823zM965.529307 277.744745l-214.433814-214.433814c-3.837398-3.837398-9.046027-5.996574-14.46955-5.996574-5.433756 0-10.632151 2.159176-14.479783 5.996574l-214.433814 214.433814c-7.992021 7.992021-7.992021 20.957311 0 28.949332l214.433814 214.433814c4.001127 3.990894 9.240455 5.996574 14.479783 5.996574 5.229095 0 10.468422-2.00568 14.46955-5.996574l214.433814-214.433814c3.837398-3.837398 5.996574-9.046027 5.996574-14.46955C971.525881 286.790772 969.366705 281.582143 965.529307 277.744745zM736.625944 477.709009l-185.494715-185.484482 185.494715-185.494715 185.484482 185.494715L736.625944 477.709009z" p-id="17613"></path></svg>
+    </a>
+</nav>
+</html>

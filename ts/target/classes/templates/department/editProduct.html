@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <span th:text="${success}"></span>
+
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <link rel="Bookmark" href="/favicon.ico">
+    <link rel="Shortcut Icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/H-ui.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/H-ui.admin.css">
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css">
+    <!-- <link rel="stylesheet" type="text/css"
+           href="../static/admin_ui/css/skin.css" id="skin">-->
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/layui.css">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');
+    </script>
+
+    <![endif]-->
+    <link href="../lib/webuploader/0.1.5/webuploader.css" rel="stylesheet"
+          type="text/css">
+    <link rel="stylesheet" href="../lib/layer/2.4/skin/layer.css"
+          id="layui_layer_skinlayercss" style="">
+    <link href="../lib/ueditor/themes/default/css/ueditor.css" type="text/css"
+          rel="stylesheet">
+    <script src="../lib/ueditor/third-party/codemirror/codemirror.js"
+            type="text/javascript" defer="defer"></script>
+    <link rel="stylesheet" type="text/css"
+          href="../lib/ueditor/third-party/codemirror/codemirror.css">
+    <script src="../lib/ueditor/third-party/zeroclipboard/ZeroClipboard.js"
+            type="text/javascript" defer="defer"></script>
+</head>
+<body style="">
+<div class="page-container" style="">
+    <!-- onsubmit="return goods_add()"-->
+    <form action="/addProduct.do" method="post" class="form form-horizontal" id="form-goods-add"
+          style="" enctype="multipart/form-data">
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品名称：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="" placeholder="" id="" name="args[title]">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>商品分类：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="">
+				<select name="args[goods_category]" class="select" id="selectCategory"></select>
+				</span></div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">排序值：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="0" placeholder="" name="args[goods_order]">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品id：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" value="0" placeholder="" name="args[goods_id]">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品规格：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                单位: <input type="text" name="args[goods_unit]" placeholder="输入商品单位" value="0" class="input-text"
+                           style=" width:18%">
+                <!-- 内容: <input type="text" name="args[goods_address]" id="" placeholder="商品原产地" value="0" class="input-text" style=" width:18%"> -->
+                销售数量: <input type="text" name="args[goods_count]" id="yishou" placeholder="输入销售数量" value="0"
+                             class="input-text" style=" width:18%">
+                币种: <input type="text" name="args[goods_moneytype]" placeholder="输入币种类型" value=""
+                           class="input-text" style=" width:23%">
+                库存: <input type="text" name="args[goods_store]" id="kucun" placeholder="输入商品库存" value="0"
+                           class="input-text" style=" width:18%">
+                <input id="baoc" type="button" value="保存">
+                总数：<input type="text" name="args[total]" id="zonshu" placeholder="输入商品库存" value="0" class="input-text"
+                          style=" width:18%;">
+                <label style="color: red;">(修改库存要点击保存)</label>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">拼单人数设定：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" name="args[goods_only_price]" placeholder="" value="88-10-9-5-4-2"
+                       class="input-text" style="width:90%">
+                元
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品价格：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" name="args[goods_price]" placeholder="" value="6666" class="input-text"
+                       style="width:90%">
+                元
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品原价：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" name="args[goods_old_price]" id="yuanjia" placeholder="" value="6666"
+                       class="input-text" style="width:90%">
+                元
+            </div>
+        </div>
+        <div class="row cl" style="">
+            <label class="form-label col-xs-4 col-sm-2">商品介绍：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+
+                <textarea style="width: 496px;height: 122px;	" name="args[goods_address]" id="texContent"></textarea>
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品尺码：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input class="input-text" type="text" name="args[goods_size]" value="無"
+                       placeholder="多个尺码用逗号隔开,如：30,31,35,37">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品主图：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input name="args[main_img]" id="file_upload" type="file" multiple="true"
+                       onchange="change_img(this.id,'goods_img')">
+                <img style="width: 100px;height: 100px" id="goods_img"
+                     src="">
+            </div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2">商品相册：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div id="inputs">
+                    <input id="sourceId" name="args[file_upload_photo]" type="file"
+                           onchange="change_imgs(this.id,'goods_img_photo')"></div>
+                <div id="goods_img_photo">
+                    <img src="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>是否推荐：</label>
+            <div class="formControls col-xs-8 col-sm-9"> <span class="select-box">
+				<select name="args[is_top]" class="select" id="selectIsTop">
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>
+				</span></div>
+        </div>
+
+
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>排行推荐：</label>
+            <div class="formControls col-xs-4 col-sm-4"> <span class="select-box">
+				<select name="args[is_sort]" id="selectIsSort">
+                    <option value="0">不推荐</option>
+                    <option value="1">热门</option>
+                    <option value="2">新品</option>
+                    <option value="3">优选</option>
+                </select>
+				</span></div>
+
+        </div>
+
+        <div class="row cl">
+
+            <label class="form-label col-xs-4 col-sm-2">商品详细：</label>
+            <div style="    height: 610px;margin-left:9%;" id="detailIframe">
+                <iframe id="iframes" width=100% height=100% src="ueditor.html" frameborder=0></iframe>
+                <input id="subtxt" name="args[subtxt]" style="visibility: hidden"/>
+                <code id="dwntxt" name="args[dwntxt]" style=""></code>
+                <button id="clik" onclick="" style="visibility: hidden"></button>
+            </div>
+        </div>
+        <div class="row cl">
+            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+                <button onclick="controlIframe()" class="btn btn-primary radius" type="button"> &nbsp; &nbsp;提交
+                    &nbsp;&nbsp;
+                </button>
+                <button onclick="layer_close();" class="btn btn-default radius" type="button"> &nbsp; &nbsp;取消
+                    &nbsp;&nbsp;
+                </button>
+            </div>
+        </div>
+
+
+    </form>
+   <script
+            type="text/javascript"
+            src="../static/admin_ui/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../lib/ueditor/ueditor.all.js"></script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script
+            type="text/javascript"
+            src="../lib/layer/2.4/layer.js"></script>
+    <script
+            type="text/javascript"
+            src="../static/h-ui/js/H-ui.min.js"></script>
+    <script
+            type="text/javascript"
+            src="../static/h-ui/js/H-ui.admin.js"></script>
+    <script
+            type="text/javascript"
+            src="../static/admin_ui/js/admin.js"></script>
+    <script src="../static/admin_ui/js/jquery.uploadify.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="../static/admin_ui/css/uploadify.css">
+    <script type="text/javascript">
+        /*直接把数据塞进去*/
+        var all = 1;
+        var i;
+        var options = "<option value='0'>请选择商品分类</option>";
+        $(function () {
+            $.post('/forProCategories.do', {}, function (getModel) {
+                for (key in getModel) {
+                    options += "<option value='" + key + "'>" + getModel[key] + "</option>";
+                }
+                $("#selectCategory").html(options);
+                $.post('/getGoodsById.do', {'getId': getQueryVariable("id")}, function (data) {
+                    /**/
+                    console.log(data);
+                    $("input[ name='args[title]']").val(data.title);
+                    $("#selectCategory").find("option[value='" + data.goodsCategory + "']").attr("selected", "selected")
+                    $("input[ name='args[goods_order]']").val(data.goodsOrder);
+                    $("input[ name='args[goods_id]']").val(data.goodsId);
+                    $("input[ name='args[goods_unit]']").val(data.goodsUnit);
+                    $("input[ name='args[goods_count]']").val(data.goodsCount);
+                    $("input[ name='args[goods_moneytype]']").val(data.goodsMoney);
+                    $("input[ name='args[goods_store]']").val(data.goodsStore);
+                    $("input[ name='args[total]']").val(data.total);
+                    $("input[ name='args[goods_price]']").val(data.goodsPrice);
+                    $("input[ name='args[goods_old_price]']").val(data.goodsOldPrice);
+                    $("input[name='args[goods_only_price]']").val(data.goodsOnlyPrice);
+                    /*商品介绍*/
+                    $("#texContent").val(data.goodsAddress);
+                    $("input[ name='args[goods_size]']").val(data.goodsSize);
+                    $("#goods_img").attr('src', data.imgMain);
+                    var its = document.getElementById('goods_img_photo');
+                    for (var z = 0; z < data.imgList.length; z++) {
+                        var showBtId = 'b' + z;
+                        var showImgId = 'img' + z;
+                        its.innerHTML += "<span ><button type='button'  id=" + showBtId + " onclick=HideImg('" + showBtId + "'" + ",'" + showImgId +"'," +"'"+ data.goodsId +"'" + ",'" + data.imgList[z] +"')>取消</button></span><img id=" + showImgId + " src=" + data.imgList[z] + " style='width:100px;height:100px;margin-top:10px;'>&nbsp;&nbsp;";
+                        all++;
+                    }
+                   /* $("input[ name='args[file_upload_photo]']").val(data.goodsListImg);*/
+
+                    $("#selectIsSort").find("option[value='" + data.isSort + "']").attr("selected", "selected")
+                    $("#selectIsTop").find("option[value='" + data.isTop + "']").attr("selected", "selected")
+                    $("#dwntxt").val(data.goodsDetail);
+                    i = window.setTimeout(setHtml, 1000);//一秒后再调用赋值方法
+                })
+            })
+        });
+
+        function setHtml() {
+            $("#iframes").contents().find("#downHtml").click();
+            clearInterval(i);
+        }
+
+        function HideImg(buttonId, imgId,goodsId,imgpath) {
+            $('#' + buttonId).css({'visibility': 'hidden', 'width': '0px'});
+            $('#' + imgId).css({'visibility': 'hidden', 'width': '0px'});
+            console.log("GoodsId:"+goodsId);
+            console.log("imgpath:"+imgpath)
+             $.post('/updateProductImg.do',{'imgpath':imgpath,'productId':goodsId},function (data,second) {
+
+                alert(data)
+            })
+            all--;
+        }
+
+        /*商品提交验证*/
+        function controlIframe() {
+            $("#iframes").contents().find("#getHtml").click();
+           if( verification()==true) submitForm() ;
+
+        }
+          function submitForm() {
+            var form = new FormData(document.getElementById("form-goods-add"));
+            $.ajax({
+                url: "/addProduct.do",
+                type: "post",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    alert('修改成功');
+                    window.location.reload();
+                },
+                error: function (e) {
+                    alert("错误！！");
+                    window.clearInterval(timer);
+                }
+            });
+        }
+  /*验证是否为空*/
+        function verification() {
+            if ($("input[name='args[title]']").val() == "") {
+                layer.msg('商品名称不能为空', {icon: 2, time: 2000});
+                $("input[name='args[title]']").focus();
+                return false;
+            }
+            if ($("select[name='args[goods_category]'] option:selected").val() == "0") {
+                layer.msg('请选择商品分类', {icon: 2, time: 2000});
+                    return false;
+            }
+            if ($("input[name='args[goods_label]']").val() == "") {
+                layer.msg('请选择商品标签', {icon: 2, time: 2000});
+                    return false;
+            }
+            if ($("input[name='args[goods_unit]']").val() == "") {
+                layer.msg('请输入商品单位', {icon: 2, time: 2000});
+                $("input[name='args[goods_unit]']").focus();
+                    return false;
+            }
+            if ($("input[name='args[goods_price]']").val() == "0.00") {
+                layer.msg('请输入商品价格', {icon: 2, time: 2000});
+                $("input[name='args[goods_price]']").focus();
+                    return false;
+            }
+            return true;
+        }
+
+    </script>
+    <script>
+
+        /*主图增删*/
+        function getFileUrl1(sourceId) {
+            var url;
+            if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+                url = document.getElementById(sourceId).value;
+            }
+            else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            return url;
+        }
+
+        function change_img(sourceId, targetId) {
+            console.log($("#" + sourceId).val());
+            var url = getFileUrl1(sourceId);
+            var imgPre = document.getElementById(targetId);
+            imgPre.src = url;
+        }
+
+    </script>
+
+    <script type="text/javascript">
+        /*相册图更换*/
+        /*iId :new Input id
+        * imgId new img id
+        * bId  new button id
+        * all 监控增加图片
+        * index 自动增加id
+        * */
+
+        var index = 1;
+
+        //多图的存在需要利用中间数组存储
+        function change_imgs(sourceId, targetId) {
+
+            var iId = 'sourceId' + index;
+            var name = 'args[file_upload_photo]' + index;
+            if (all > 3) {
+                alert("只能加三张哦!");
+         var obj = document.getElementById(sourceId) ;
+         obj.outerHTML=obj.outerHTML;
+                return 0;
+            }
+            $('#' + sourceId).addClass("hide");
+            $("#inputs").append("<input id=" + iId + " name=args[file_upload_photo]  type='file'  onchange=" + "change_imgs(this.id,'goods_img_photo') >");
+
+            var imgs = document.getElementById(targetId);
+            var imgId = 'img' + (index - 1);
+            var bId = 'b' + (index - 1);
+            var url = getFileUrl(sourceId);
+            imgs.innerHTML += "<span ><button type='button'  id=" + bId + " onclick=delete_One('" + imgId + "'" + ",'" + sourceId + "'" + ",'" + bId + "')>取消</button></span><img id=" + imgId + " src=" + url + " style='width:100px;height:100px;margin-top:10px;'>&nbsp;&nbsp;";
+            index++;
+            all++;
+        }
+
+        function setImgs(sourceId, targetId) {
+            targetId = 'goods_img_photo';
+            $('#' + sourceId).addClass("hide");
+            var iId = 'sourceId' + index;
+            var name = 'args[file_upload_photo]' + index;
+            if (all > 3) {
+                alert("只能加三张哦!");
+                return 0;
+            }
+            $("#inputs").append("<input id=" + iId + " name=args[file_upload_photo]  type='file'  onchange=" + "change_imgs(this.id,'goods_img_photo') >");
+
+            var imgs = document.getElementById(targetId);
+            var imgId = 'img' + (index - 1);
+            var bId = 'b' + (index - 1);
+            var url = getFileUrl(sourceId);
+            imgs.innerHTML += "<span ><button type='button'  id=" + bId + " onclick=delete_One('" + imgId + "'" + ",'" + sourceId + "'" + ",'" + bId + "')>取消</button></span><img id=" + imgId + " src=" + url + " style='width:100px;height:100px;margin-top:10px;'>&nbsp;&nbsp;";
+            index++;
+            all++;
+        }
+
+        function getFileUrl(sourceId) {
+            var url;
+            if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+                url = document.getElementById(sourceId).value;
+            }
+            else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            return url;
+        }
+
+        function delete_One(imgId, sourceId, butID) {
+
+            $('#' + imgId).remove();
+            $('#' + butID).remove();
+            $('#' + sourceId).remove();
+            all--;
+        }
+
+
+
+
+        /*编辑产品*/
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return (false);
+        }
+    </script>
+</div>
+
+</body>
+
+</html>

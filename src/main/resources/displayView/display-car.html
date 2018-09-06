@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Website Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/iconfont.css">
+    <!--    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/iconfont.js"></script>
+    <style>
+        .icon {
+            width: 1em; height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+
+        .shortdesc {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 5px 0 0;
+            padding: 5px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-weight: 500;
+        }
+
+        .span_product_car {
+            margin-top: -24px;
+            margin-left: -140px;
+            font-size: 18px;
+            font-weight: normal;
+            color: red;
+            height: 100%;
+            padding-left: 46px;
+            float: left;
+        }
+
+        .span_product_button {
+            margin-left: 180px;
+            margin-top: -2px;
+            height: 30px;
+        }
+
+
+
+        .img_product_car {
+            width: 112px;
+
+        }
+
+        .write_row {
+            padding: 10px 13px 6px;
+        }
+
+
+
+        img {
+            width: 100%;
+        }
+
+        .title1 {
+            position: absolute;
+            width: 100px;
+            top: -28px;
+            left: 3px;
+        }
+
+        .title2 {
+            margin-top: -15px;
+            margin-left: 93px;
+        }
+
+        .title3 {
+            position: absolute;
+            left: 105px;
+            top: 30px;
+            font-size: 14px;
+        }
+
+        .addcart-header-price-total {
+            font-weight: bold;
+            color: #dc35be;
+        }
+
+        .addcart-header-number-total {
+            font-size: 10px;
+        }
+
+        .t-remark {
+            color: #444;
+            font-size: 11px;
+            margin-bottom: -8px;
+        }
+
+        .text-l {
+            text-align: left;
+            font-size: 13px;
+        }
+
+
+        .bg-col {
+            margin-bottom: 56px;
+            background-color: white;
+        }
+    </style>
+
+</head>
+<link  href="css/iconfont.css">
+<script src="js/jquery.min.js"></script>
+
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/iconfont.js"></script>
+<script src="js/cookieSession.js"></script>
+<body id="setBody">
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+    <a class="navbar-brand" href="display-index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1535446520915"
+             class="icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="3043" width="200" height="200">
+            <defs>
+                <style type="text/css"/>
+            </defs>
+            <path d="M953.23019 398.269749c-0.629333-0.672312-398.536832-322.714959-398.536832-322.714959-0.480954-0.388856-0.979304-0.7552-1.493004-1.096984-30.241768-20.150946-62.685691-19.065218-91.351568 3.051499-0.11154 0.085958-0.223081 0.173962-0.334621 0.26299L67.487044 395.337977c-0.726547 0.586354-1.412163 1.221828-2.050706 1.904373-25.678846 27.429723-24.255427 70.635757 3.177366 96.317673l1.475608 1.381463c25.317619 23.700795 64.076364 24.317848 90.086761 2.701528l0 429.144944-56.923454 0c-11.050684 0-20.008706 8.959046-20.008706 20.008706 0 11.04966 8.958022 20.008706 20.008706 20.008706l805.094338 0c11.04966 0 20.008706-8.959046 20.008706-20.008706 0-11.04966-8.959046-20.008706-20.008706-20.008706L858.752422 926.787958 858.752422 498.879168c11.540847 9.519818 25.810852 14.94948 41.012066 15.4509 0.76748 0.025583 1.533936 0.038886 2.298346 0.038886 17.349133 0 33.790594-6.485715 46.509267-18.392906l1.484817-1.391696c13.287631-12.43931 20.934798-29.308513 21.534456-47.499827C972.19103 428.894234 965.670523 411.55738 953.23019 398.269749zM818.733986 822.346257 703.555757 822.346257 703.555757 577.678862c0-40.414455-32.384571-73.29226-72.65474-73.29226s-72.65474 32.877805-72.65474 73.29226l0 244.667396L200.193485 822.346257 200.193485 466.059692l308.683385-237.884922 309.857117 239.07912L818.733986 822.346257zM598.155219 925.700183 598.155219 577.678862c0-18.34788 14.540158-33.274848 32.745798-33.274848s32.745798 14.926968 32.745798 33.274848l0 348.021322L598.155219 925.700183zM200.193485 862.255199l358.052792 0 0 64.531735L200.193485 926.786934 200.193485 862.255199zM703.555757 926.787958l0-64.531735 115.178229 0 0 64.531735L703.555757 926.787958zM931.59545 445.76753c-0.248663 7.507998-3.403516 14.471596-8.881274 19.597337l-1.486864 1.391696c-5.482875 5.134951-12.617365 7.863085-20.145829 7.577582-7.509021-0.246617-14.471596-3.403516-19.606547-8.887414-0.734734-0.784876-1.531889-1.509377-2.384303-2.167363L521.107425 187.067536c-3.598968-2.778276-7.912204-4.167926-12.222369-4.167926-4.307096 0-8.615215 1.38658-12.214183 4.15974L139.585105 462.244806c-0.854461 0.657986-1.654686 1.385557-2.39249 2.173502-10.602476 11.320836-28.433586 11.906168-39.756469 1.306762l-1.475608-1.38044c-11.023054-10.321066-11.870352-27.499307-2.124384-38.84675L486.447021 109.074208c14.536065-11.139711 28.490891-11.713786 43.843554-1.786693l394.529565 319.227532C929.430134 431.871031 931.829787 438.660668 931.59545 445.76753z"
+                  p-id="3044"/>
+            <path d="M366.376365 506.575454c-40.270169 0-73.166393 32.877805-73.166393 73.290213l0 142.197606 146.332786 0L439.542758 579.865667C439.542758 539.453259 406.646534 506.575454 366.376365 506.575454zM399.633816 682.153308l-65.491597 0 0-102.288664c0-18.345834 14.542204-33.272801 32.745798-33.272801s32.745798 14.926968 32.745798 33.272801L399.633816 682.153308z"
+                  p-id="3045"/>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-gouwucheman"></use>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" style="width: 25px; height: 28px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="11258">
+            <path d="M870.195543 715.396433 870.195543 433.524694 650.96447 433.524694 650.96447 182.973288 369.089661 182.973288l0 187.91381L149.856541 370.887099 149.856541 715.396433l-62.638619 0 0 125.278261 845.617263 0L932.835186 715.396433 870.195543 715.396433zM838.876234 464.844004 838.876234 715.396433 650.96447 715.396433 650.96447 464.844004 838.876234 464.844004zM400.408971 214.291574l219.235167 0 0 219.23312L619.644137 715.396433 400.408971 715.396433 400.408971 370.887099 400.408971 214.291574zM181.175851 402.206408 369.089661 402.206408 369.089661 715.396433 181.175851 715.396433 181.175851 402.206408zM901.514853 809.354362 118.537232 809.354362l0-62.638619 31.318286 0 219.23312 0 31.31931 0 219.235167 0 31.31931 0 219.231073 0 31.31931 0L901.512806 809.354362z"
+                  p-id="11259"></path>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" style="width: 25px; height: 28px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="17612">
+            <path d="M878.159424 565.40635l-327.396585 0c-11.307533 0-20.466124 9.168824-20.466124 20.466124l0 327.396585c0 11.307533 9.15859 20.466124 20.466124 20.466124l327.396585 0c11.2973 0 20.466124-9.15859 20.466124-20.466124l0-327.396585C898.625548 574.575174 889.456724 565.40635 878.159424 565.40635zM857.6933 892.802936l-286.464337 0 0-286.464337 286.464337 0L857.6933 892.802936zM430.606225 565.40635l-327.396585 0c-11.2973 0-20.466124 9.168824-20.466124 20.466124l0 327.396585c0 11.307533 9.168824 20.466124 20.466124 20.466124l327.396585 0c11.307533 0 20.466124-9.15859 20.466124-20.466124l0-327.396585C451.072349 574.575174 441.913758 565.40635 430.606225 565.40635zM410.140101 892.802936l-286.464337 0 0-286.464337 286.464337 0L410.140101 892.802936zM430.606225 115.601878l-327.396585 0c-11.2973 0-20.466124 9.15859-20.466124 20.466124l0 327.386352c0 11.307533 9.168824 20.466124 20.466124 20.466124l327.396585 0c11.307533 0 20.466124-9.15859 20.466124-20.466124l0-327.386352C451.072349 124.760468 441.913758 115.601878 430.606225 115.601878zM410.140101 442.98823l-286.464337 0 0-286.454104 286.464337 0L410.140101 442.98823zM965.529307 277.744745l-214.433814-214.433814c-3.837398-3.837398-9.046027-5.996574-14.46955-5.996574-5.433756 0-10.632151 2.159176-14.479783 5.996574l-214.433814 214.433814c-7.992021 7.992021-7.992021 20.957311 0 28.949332l214.433814 214.433814c4.001127 3.990894 9.240455 5.996574 14.479783 5.996574 5.229095 0 10.468422-2.00568 14.46955-5.996574l214.433814-214.433814c3.837398-3.837398 5.996574-9.046027 5.996574-14.46955C971.525881 286.790772 969.366705 281.582143 965.529307 277.744745zM736.625944 477.709009l-185.494715-185.484482 185.494715-185.494715 185.484482 185.494715L736.625944 477.709009z"
+                  p-id="17613"></path>
+        </svg>
+    </a>
+</nav>
+
+</body>
+
+<!-- 模态框 -->
+
+<script type="text/javascript">
+    function orderCount() {
+        window.location.href = "display-order.html"
+    }
+
+    $(function () {
+        setContent();
+    });
+
+    /*设置body内容*/
+    function setContent() {
+        var setCarProduct=JSON.parse(cookieUtil.getCookie("car"));
+        var body_title = "<div class='row' style='padding:15px'>" +
+            "<div class='col-sm-6 col-md-6'><span style='font-weight: bold;font-size: 20px;'>我的購物車</span></div>" +
+            "<div class='col-sm-6 col-md-6'></div>";
+        var body_body ="";
+        for(var i=0;i<setCarProduct.length;i++){
+             body_body+= "<div class='row write_row'>" +
+               "<div class='col-sm-4 col-md-4' style='background-repeat: no-repeat ;text-align: center'>" +
+               "<a href='#' class='thumbnail'>" +
+               "<img src='img/cloth2.jpg' class='img_product_car' alt='...'> </a> </div>" +
+               "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
+               "<div class='d-flex flex-column mb-3' style='text-align: left'>" +
+               "<div class='p-2 ' style='padding:0.0rem !important;'><h4 class='shortdesc '><b style='color:#f00'>"+setCarProduct[i].g_name+"</b></h4></div>" +
+               " <div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_color_name+"</p></div>" +
+                 "<div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_package_name+"</p></div>" +
+               "</div>"+
+            "<div class='d-flex flex-column mb-3'>" +
+            "<span class='span_product_car'>HK$" +setCarProduct[i].g_price+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style='color:black'>X"+setCarProduct[i].num+"</b></span>" +
+            "<span class='span_product_button' onclick=deleteProduct('"+setCarProduct[i].g_name+"'"+")><img src='img/del2.png' style='width:30px'> </span>" +
+            "</div></div></div>"
+        }
+
+        var body_bottom = "<nav class='navbar navbar-expand-sm bg-col navbar-dark fixed-bottom' style='height: 63px; background-color:whitesmoke;'>" +
+            "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
+            "<p  style='margin-bottom: 0'><em class='dis-block' style='font-size: 13px'>合计：</em><span id='goods_subtotal' style='color:red'>NT$3396</span></p>" +
+            "<p style='margin-bottom: 0;font-size:13px;color:red'>不含運費</p> </div>" +
+
+            "<div class='col-sm-4 col-md-4' style='height: 62px;  width: 111px;color: wheat;'>" +
+            " <input type=' button ' onclick='orderCount()' value='結算' style='  height: 62px; width: 100%;  margin-left: 12px;color: wheat; background-color: #fe3939; text-align: center; '>" +
+            "</div></nav>"
+
+        $("#setBody").append(body_title+body_body+body_bottom)
+        
+
+    }
+    function deleteProduct(name) {
+        cookieUtil.unsetCookie("car");
+        cookieUtil.getCookie(name);
+        window.location.reload()
+    }
+</script>
+</html>

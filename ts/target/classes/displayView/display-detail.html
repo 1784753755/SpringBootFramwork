@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap 4 Website Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href="css/iconfont.css">
+    <!--    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+    <script src="js/jquery.min.js"></script>
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/iconfont.js"></script>
+    <style>
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+
+        .home_goods_pricebar {
+            padding: 15px;
+            font-size: 13px;
+        }
+
+        .span_product {
+            color: red;
+            font-weight: 700;
+        }
+
+        .img_product {
+            width: 100%;
+            height: 117px;
+        }
+
+        .am-text-gary {
+            font-size: 8px;
+            font-weight: 300;
+        }
+
+        .shortdesc {
+            font-size: 14px;
+            line-height: 20px;
+            margin: 5px 0 0;
+            padding: 5px;
+        }
+
+        .span_product {
+            font-size: 20px;
+            font-weight: bold;
+            color: #d62672;
+            height: 100%;
+            padding-left: 30px;
+            float: left;
+        }
+
+        .am-text-gary {
+            font-size: 12px;
+            line-height: 35px;
+            text-decoration: line-through;
+            padding-left: 5px;
+            float: left;
+            color: #788188;
+        }
+
+        .ourinfo {
+            color: #888;
+            width: 100%;
+            border-top: 1px dashed #ddd;
+            border-bottom: 1px dashed #ddd;
+            padding: 4px 5px 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .margin_right {
+            line-height: 22px;
+            padding-right: 11px;
+            font-size: 12px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .img_product_detail {
+            height: 30px;
+        }
+
+        .write_row {
+            padding: 10px 13px 6px;
+        }
+
+        .review {
+            text-align: right;
+            padding-right: 28px;
+            font-size: 12px;
+        }
+
+        img {
+            width: 100%;
+        }
+        .table{
+            width:100%;
+        }
+
+        .title1 {
+            position: absolute;
+            width: 100px;
+            top: -28px;
+            left: 3px;
+        }
+
+        .title2 {
+            margin-top: -15px;
+            margin-left: 93px;
+        }
+
+        .title3 {
+            position: absolute;
+            left: 105px;
+            top: 30px;
+            font-size: 14px;
+        }
+
+        .addcart-header-price-total {
+            font-weight: bold;
+            color: #dc35be;
+        }
+
+        .addcart-header-number-total {
+            font-size: 10px;
+        }
+
+        .t-remark {
+            color: #444;
+            font-size: 11px;
+            margin-bottom: -8px;
+        }
+
+        .addColor {
+            border-color: red;
+            color: red;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--轮播-->
+<div id="demo" class="carousel slide" data-ride="carousel">
+    <!-- 指示符 -->
+    <ul class="carousel-indicators" id="slide_tip">
+    </ul>
+    <!-- 轮播图片 -->
+    <div class="carousel-inner" id="slide_body">
+    </div>
+    <!-- 左右切换按钮 -->
+    <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </a>
+    <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </a>
+
+</div>
+<div style=><h4 class="shortdesc " id="title_product"><!--<b style="color:#f00">【2018Ins明星爆款】</b>鏤空百搭子母包！時尚鏤空，質感五金LOGO，順滑垃鏈！姑娘！點擊我“包”你滿意！<b
+        style="color:#f00">【第二件$400】</b>-->
+</h4>
+</div>
+<div class="row"><span class='span_product' id="price_now"></span>
+    <del class='am-text-gary' id="price_old"></del>
+</div>
+<!--简介-->
+<div class="ourinfo">
+    <span class="margin_right"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-31xuanze"></use>
+                    </svg>免運費</span>
+    <span class="margin_right"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-31xuanze"></use>
+                    </svg>貨到付款</span>
+    <span class="margin_right"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-31xuanze"></use>
+                    </svg>信用卡支付</span>
+    <span class="margin_right"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-31xuanze"></use>
+                    </svg>7天鑑賞期</span>
+</div>
+<!--商品-->
+<div class="row write_row">
+    <div class="col-sm-4 col-md-3" style="background-repeat: no-repeat ;text-align: center">
+        <a href="#" class="thumbnail">
+            <img src="img/logo.png" class="img_product_detail"
+                 alt="...">
+        </a>
+    </div>
+    <div class="col-sm-4 col-md-3" style="background-repeat: no-repeat ;text-align: center">
+
+        <a href="#content" scroll-y="34"><span style="color:black;">商品介紹</span></a>
+
+    </div>
+    <div class="col-sm-4 col-md-3" style="background-repeat: no-repeat ;text-align: center">
+
+        <a href="#reviewId" scroll-y="50"> <span style="color:black;">客戶評價</span></a>
+
+    </div>
+
+</div>
+<!--内容展示-->
+<div class="row ">
+    <div class="col-sm-12 col-md-12" id="content">
+        第一块
+    </div>
+</div>
+<div class="row " style="padding-left:6px;" id="reviewId">
+    <div class="col-sm-6 col-md-6">
+        客戶評論
+    </div>
+    <div class="col-sm-6 col-md-6 review">
+        我要評論
+    </div>
+</div>
+<!--底部-->
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <p style="font-size: 3px;"> 溫馨提示：支持貨到付款+免郵費！收到貨有任何疑問請聯繫我們在線客服! 也可隨時聯繫:<a>service@buury.com</a>。同時請附上您的姓名及聯繫方式及訂單編號在郵件當中，以便我們能快速的給您及時處理，祝您購物愉快！！！
+        Copyright @ 2015 buury.com All Rights Reserved
+    </p>
+</div>
+</body>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+    <a class="navbar-brand" href="diplay-index.html">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" t="1535446520915"
+             class="icon" style="" viewBox="0 0 1024 1024" version="1.1" p-id="3043" width="200" height="200">
+            <defs>
+                <style type="text/css"/>
+            </defs>
+            <path d="M953.23019 398.269749c-0.629333-0.672312-398.536832-322.714959-398.536832-322.714959-0.480954-0.388856-0.979304-0.7552-1.493004-1.096984-30.241768-20.150946-62.685691-19.065218-91.351568 3.051499-0.11154 0.085958-0.223081 0.173962-0.334621 0.26299L67.487044 395.337977c-0.726547 0.586354-1.412163 1.221828-2.050706 1.904373-25.678846 27.429723-24.255427 70.635757 3.177366 96.317673l1.475608 1.381463c25.317619 23.700795 64.076364 24.317848 90.086761 2.701528l0 429.144944-56.923454 0c-11.050684 0-20.008706 8.959046-20.008706 20.008706 0 11.04966 8.958022 20.008706 20.008706 20.008706l805.094338 0c11.04966 0 20.008706-8.959046 20.008706-20.008706 0-11.04966-8.959046-20.008706-20.008706-20.008706L858.752422 926.787958 858.752422 498.879168c11.540847 9.519818 25.810852 14.94948 41.012066 15.4509 0.76748 0.025583 1.533936 0.038886 2.298346 0.038886 17.349133 0 33.790594-6.485715 46.509267-18.392906l1.484817-1.391696c13.287631-12.43931 20.934798-29.308513 21.534456-47.499827C972.19103 428.894234 965.670523 411.55738 953.23019 398.269749zM818.733986 822.346257 703.555757 822.346257 703.555757 577.678862c0-40.414455-32.384571-73.29226-72.65474-73.29226s-72.65474 32.877805-72.65474 73.29226l0 244.667396L200.193485 822.346257 200.193485 466.059692l308.683385-237.884922 309.857117 239.07912L818.733986 822.346257zM598.155219 925.700183 598.155219 577.678862c0-18.34788 14.540158-33.274848 32.745798-33.274848s32.745798 14.926968 32.745798 33.274848l0 348.021322L598.155219 925.700183zM200.193485 862.255199l358.052792 0 0 64.531735L200.193485 926.786934 200.193485 862.255199zM703.555757 926.787958l0-64.531735 115.178229 0 0 64.531735L703.555757 926.787958zM931.59545 445.76753c-0.248663 7.507998-3.403516 14.471596-8.881274 19.597337l-1.486864 1.391696c-5.482875 5.134951-12.617365 7.863085-20.145829 7.577582-7.509021-0.246617-14.471596-3.403516-19.606547-8.887414-0.734734-0.784876-1.531889-1.509377-2.384303-2.167363L521.107425 187.067536c-3.598968-2.778276-7.912204-4.167926-12.222369-4.167926-4.307096 0-8.615215 1.38658-12.214183 4.15974L139.585105 462.244806c-0.854461 0.657986-1.654686 1.385557-2.39249 2.173502-10.602476 11.320836-28.433586 11.906168-39.756469 1.306762l-1.475608-1.38044c-11.023054-10.321066-11.870352-27.499307-2.124384-38.84675L486.447021 109.074208c14.536065-11.139711 28.490891-11.713786 43.843554-1.786693l394.529565 319.227532C929.430134 431.871031 931.829787 438.660668 931.59545 445.76753z"
+                  p-id="3044"/>
+            <path d="M366.376365 506.575454c-40.270169 0-73.166393 32.877805-73.166393 73.290213l0 142.197606 146.332786 0L439.542758 579.865667C439.542758 539.453259 406.646534 506.575454 366.376365 506.575454zM399.633816 682.153308l-65.491597 0 0-102.288664c0-18.345834 14.542204-33.272801 32.745798-33.272801s32.745798 14.926968 32.745798 33.272801L399.633816 682.153308z"
+                  p-id="3045"/>
+        </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-gouwucheman"></use>
+        </svg>
+    </a>
+    <button style="border-radius: 8px;
+    background-color: #fe3939;height: 40px;border-color: #f77b91;
+    width: 100px" class="btn btn-primary" data-toggle="modal" data-target="#myModal">加入購物車
+    </button>
+    <button style="border-radius: 8px;
+    background-color: #fe3939;height: 40px;border-color: #f77b91;
+    width: 100px" class="btn btn-primary" data-toggle="modal" data-target="#myModal">立即結賬
+    </button>
+</nav>
+<!-- 模态框 -->
+<div class="modal fade" id="myModal" style="top:auto;bottom:-29px">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- 模态框头部 -->
+            <div class="modal-header">
+                <div class="title1"><img src="img/cloth.jpg" id="img_main"></div>
+                <div class="title2">
+                    <span class="addcart-header-price-total" id="price_now_buy">NT$1,380</span>
+                    <span class="addcart-header-number-total">共 <font style="color:#e62e04"  id="count_buy">1</font> 件</span>
+                </div>
+                <div class="title3">
+                    <b style="overflow:hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-box-orient: vertical;
+                     -webkit-line-clamp: 2; color:#f00" id="name_alert">
+                        【秒殺就現在】$1380拿下燕子鏈條小方包，雙飛燕子、時尚印花、質感五金，專櫃現場掃貨，100%正品保障！【第二件半價，最後200組】</b>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" style="margin-top:-26px">
+                    <svg class="icon"
+                         style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                         viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4052">
+                        <path d="M687.603949 656.994302 541.10027 510.457878 687.603949 363.943966c8.829086-8.840342 8.829086-23.122627 0-31.961946-8.850575-8.840342-23.13286-8.840342-31.962969 0L509.138324 478.495932 362.623389 331.980997c-8.840342-8.818853-23.122627-8.818853-31.962969 0-8.840342 8.840342-8.840342 23.144116 0 31.984459l146.493445 146.514935L330.638931 656.994302c-8.819876 8.830109-8.819876 23.133883 0 31.962969 8.840342 8.829086 23.144116 8.829086 31.984459 0l146.514935-146.514935 146.502655 146.514935c8.830109 8.829086 23.112394 8.829086 31.962969 0C696.433034 680.129208 696.45657 665.824411 687.603949 656.994302zM938.362063 510.457878c0-237.061161-192.174857-429.234995-429.247274-429.234995-237.062184 0-429.246251 192.173834-429.246251 429.234995 0 237.083673 192.185091 429.257507 429.246251 429.257507 97.345072 0 186.435133-33.110095 258.440074-87.677898 2.958378-3.354398 4.900613-7.636934 4.900613-12.449543 0-10.506285-8.521071-19.026332-19.027355-19.026332-5.431709 0-10.287297 2.162246-13.752212 5.826705l-0.2415 0c-64.456011 47.414893-143.745868 75.800383-229.876528 75.800383-214.679407 0-388.730489-174.073594-388.730489-388.719232 0-214.688617 174.051081-388.718209 388.730489-388.718209 214.688617 0 388.697743 174.029592 388.697743 388.718209 0 65.548902-15.386432 127.277802-44.081984 181.490517l0 0.309038c-0.508583 1.811252-1.104147 3.576455-1.104147 5.519714 0 10.507308 8.520047 19.028379 19.028379 19.028379 8.18952 0 15.054881-5.254677 17.703197-12.494569l0 0.132006C920.349827 648.38625 938.362063 581.536726 938.362063 510.457878z"
+                              p-id="4053"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 模态框主体 -->
+            <div class="modal-body" style="margin-top:27px">
+
+                <h4 class="t-remark" id="package-color">顏色</h4>
+                <div class="form-group" style=" margin-top: 20px;text-align: center;" id="wrap1">
+                              </div>
+
+                <h4 class="t-remark" id="package-team">套餐</h4>
+                <div class="form-group" id="wrap2">
+
+                </div>
+                <h4 class="t-remark" style="margin-top: 13px; margin-left: 21px;">數量</h4>
+                <div class="div-num-1 dis-box m-top08" style="    margin-top: 20px;">
+                    <a onclick="teamePrice('1')">
+                        <svg class="icon"
+                             style="width: 30px; height: 27px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4740">
+                            <path d="M587.229378 437.990403 580.722174 437.990403 76.975139 437.990403 76.975139 581.918419 580.722174 581.918419 587.229378 581.918419 940.542216 581.918419 940.542216 437.990403Z"
+                                  p-id="4741"></path>
+                        </svg>
+                    </a>
+                    <input type="text" readonly="true" value="1"
+                           style="width: 50px;border: 1px solid; text-align: center" id="countNum">
+                    <a onclick="teamePrice('3')">
+                        <svg class="icon"
+                             style="width: 30px; height: 27px;vertical-align: middle;fill: currentColor;overflow: hidden;"
+                             viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4730">
+                            <path d="M580.722174 437.990403 580.722174 78.171384 436.794158 78.171384 436.794158 437.990403 76.975139 437.990403 76.975139 581.918419 436.794158 581.918419 436.794158 941.737438 580.722174 941.737438 580.722174 581.918419 940.542216 581.918419 940.542216 437.990403Z"
+                                  p-id="4731"></path>
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- 模态框底部 -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="verificateShop()"
+                        style=" width: 100%;height: 51px;background-color: #f05927;">加入購物車
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        setContent();
+    });
+
+    function getQueryVariable(variable) {
+
+        var url = decodeURIComponent(window.location.href)
+        console.log(url);
+        var query = "";
+        if (url.indexOf("?") != -1) {
+            query = url.substr(url.indexOf("?") + 1);
+        }
+        console.log(query);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+    /*设置body内容*/
+    function setContent() {
+        var sTip = "";
+        var sBody = "";
+         var color_product="";
+        $.post("/getProductById.html", {'productId': getQueryVariable("id")}, function (data) {
+            console.log(data)
+            for (var i = 0; i < data.imgList.length; i++) {
+                if (i == 0) {
+                    sTip += "<li data-target='#demo' data-slide-to='" + i + "' class='active'></li>"
+                    sBody += "<div class='carousel-item active' style='background-repeat: no-repeat;text-align: center'>" +
+                        "<img src='" + data.imgList[i] + "' style='height: 360px;    width: 100%;'>" +
+                        "</div>"
+                } else {
+                    sTip += "<li data-target='#demo' data-slide-to='" + i + "'   ></li>"
+                    sBody += "<div class='carousel-item' style='background-repeat: no-repeat;text-align: center'>" +
+                        "<img src='" + data.imgList[i] + "' style='height: 360px;    width: 100%;'>" +
+                        "</div>"
+                }
+            }
+            $("#content").html(data.detail)
+            $("#slide_tip").html(sTip)
+            $("#slide_body").html(sBody)
+            $("#title_product").html(data.name)
+            $("#price_now").html("立搶價HK$"+data.nowPrice+"&nbsp;&nbsp;")
+            $("#price_old").html("參考價HK$"+data.oldPrice)
+            $("#img_main").html(data.imgMain)
+            $("#price_now_buy").html(data.nowPrice)
+            $("#count_buy").html(data.num)
+            $("#name_alert").html(data.name)
+            var rwId=""
+            var twId=""
+            for(var i=0;i<data.color.length;i++){
+                rwId="rc"+(i+1);
+                twId="tc"+(i+1)
+                 color_product += "<input id='"+rwId+"' type='radio' name='optradio1' value='"+data.color[i].colorId+"'style='visibility: hidden;width:0;height:0;display: inline'/>"+
+                   " <input  readonly='true' style='background-color: white;display:inline;width:63px' id='"+twId+"' type='text' class='form-control' value='"+data.color[i].title+"' onclick=chooseOneColor('" + twId + "'" + ",'" + rwId +"')  />"
+
+            }
+            for(var i=0;i<data.aPackage.length;i++){
+                rwId="r"+(i+1);
+                twId="t"+(i+1)
+                 color_product +=  "<input id='"+rwId+"' type='radio' name='optradio' value='"+data.aPackage[i].packageId+"' style='visibility: hidden'/>"+
+                   " <input id='"+twId+"' readonly='true' style='background-color: white;' type='text' class='form-control' value='"+data.aPackage[i].title+"' onclick=chooseOne('" + twId + "'" + ",'" + rwId +"') />"
+            }
+             $("#wrap1").html(color_product)
+
+        });
+
+    }
+
+    var tIdOld = "";
+    var rIdOld = "";
+    var tcIdOld = "";
+    var rcIdOld = "";
+
+    /*選擇套餐*/
+    function chooseOne(tId, rId) {
+        console.log("nice");
+        if (!tIdOld == "") {
+            $("#" + rIdOld).attr('checked', false);
+            $("#" + tIdOld).removeClass("addColor");
+        }
+        $("#" + rId).attr('checked', true);
+        $("#" + tId).addClass("addColor");
+        tIdOld = tId;
+        rIdOld = rId;
+    }
+
+    /*選擇顏色*/
+    function chooseOneColor(tId, rId) {
+       console.log("nice");
+        if (!tcIdOld == "") {
+            $("#" + rcIdOld).attr('checked', false);
+            $("#" + tcIdOld).removeClass("addColor");
+        }
+        $("#" + rId).attr('checked', true);
+        $("#" + tId).addClass("addColor");
+        tcIdOld = tId;
+        rcIdOld = rId;
+    }
+
+    /*数量的变化*/
+    var countnum = 1;
+
+    /*增加 减少数量*/
+    function teamePrice(getMethod) {
+        countnum == $("#countNum").val()
+        if (getMethod == "1") {
+            if (countnum < 2) {
+                countnum = 1;
+            }
+            else
+                countnum--;
+        }
+        if (getMethod == "3") {
+            countnum++;
+        }
+        $("#countNum").val(countnum);
+    }
+
+    /*验证是否加入购物车没选颜色套餐的一律取消*/
+    function verificateShop() {
+        window.location.href = "display-car.html";
+        var getVal = $("#wrap1 input[name='optradio1']:checked ").val();
+        var getVal2 = $("#wrap2 input[name='optradio']:checked ").val();
+        if (getVal == undefined || getVal2 == undefined)
+            alert(getVal)
+        /*    window.location.href="display-car.html";*/
+    }
+
+</script>
+</html>

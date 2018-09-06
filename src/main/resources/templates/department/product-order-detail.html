@@ -1,0 +1,256 @@
+﻿<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css"/>
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin"/>
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css"/>
+    <link rel="stylesheet" href="../lib/layer/2.4/skin/layer.css"
+          id="layui_layer_skinlayercss" style="">
+    <!--[if IE 6]>
+    <script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js"></script>
+    <script>DD_belatedPNG.fix('*');</script>
+    <![endif]-->
+    <title>图片列表</title>
+    <style type="text/css">
+        tr {
+            height: 80px;
+            overflow: hidden;
+        }
+
+        td {
+            height: 80px;
+            width: 40px;
+            margin: auto;
+            padding: 8px;
+            line-height: 20px;
+            word-break: break-all;
+            overflow: hidden;
+        }
+
+        .button_type {
+            background-color: #3bb4f2;
+            border: 0px solid;
+            padding: 3px 5px;
+            border-radius: 7px;
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            padding: 8px;
+            line-height: 20px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 订单管理 <span
+        class="c-gray en">&gt;</span>详细列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px"
+                                             href="javascript:location.replace(location.href);" title="刷新"><i
+        class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+    <div class="text-c">
+        <select type="text" name="" id="selectCategory" placeholder=" 类别" style="width:250px"
+                class="input-text"></select>
+        <button name="" id="" class="btn btn-success" onclick="getProductBycategory()"><i
+                class="Hui-iconfont">&#xe665;</i> 按照分类
+        </button>
+
+        <input type="text" name="" id="searchProductName" placeholder=" 商品名称" style="width:250px" class="input-text ">
+        <button name="" id="" class="btn btn-success" onclick="searchProduct()"><i class="Hui-iconfont">&#xe665;</i> 搜商品
+        </button>
+    </div>
+    <div class="cl pd-5 bg-1 bk-gray mt-20"><span class="l"> <a
+            class="btn btn-primary radius" href='/department/addProduct.html'><i
+            class="Hui-iconfont">&#xe600;</i> 添加商品</a></span></div>
+    <div class="mt-20">
+        <table class="table table-border table-bordered table-bg table-hover table-sort">
+            <thead>
+            <tr class="text-c">
+                <th width="30"><input name="" type="checkbox" value=""></th>
+                <th width="30">域名</th>
+                <th width="180">域名地址</th>
+                <th width="70">域名拥有者</th>
+                <th width="50">客户地址</th>
+                <th width="50">邮编</th>
+                <th width="50">邮箱</th>
+                <th width="25">备注</th>
+                <th width="25">运单号</th>
+                <th width="25">出货日期</th>
+            </tr>
+            </thead>
+            <tbody id="tbodyId">
+
+            </tbody>
+        </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../static/admin_ui/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+    <!--先按照默认水准获取-->
+    /*搜索 商品的名称*/
+    function searchProduct() {
+        var getName = $("#searchProductName").val();
+
+        if (getName == "") {
+            layer.msg('搜索商品名字不能为空哦', {icon: 2, time: 3000});
+            return;
+        }
+        $.post("/getProductByName.do", {'productName': getName}, function (data) {
+            dressContent(data);
+        })
+    }
+
+    var max = 0;
+    /*监控页码*/
+    var globalIndex = 1;
+    $(function () {
+        $.post("/getOrderDetail.do", {'OrderId': getQueryVariable("id")}, function (data) {
+            console.log(data);
+            setContent(data);
+        })
+    });
+
+    function setContent(data) {
+
+        var content1 = "<tr><td></td>" +
+                        "<td>" + data.domainHostUrl + "</td>" +
+                        "<td></td>" +
+                        "<td>" + data.user + "</td>" +
+                        "<td>" + data.customerAddress + "</td>" +
+                        "<td>" + data.user_postal + "</td>" +
+                        "<td></td>" +
+                        "<td>" + data.user_connect + "</td>" +
+                        "<td></td>" +
+                        "<td></td>";
+        var title2 ="<tr>" + "<td width='30'><input name='' type='checkbox' value=''></td>"+
+            "<td colspan='4'>商品名称</td>" +
+            "<td>商品颜色</td>" +
+            "<td>商品尺码</td>" +
+            " <td>商品套餐</td>" +
+            "<td>商品价格</td>" +
+            "<td>商品数量</td></tr>";
+        var content2="";
+        for(var i=0;i<data.getOrderDetail.length;i++){
+            content2+= "<tr><td colspan='5'>"+data.getOrderDetail[i].title+" </td>" +
+            "<td>"+data.getOrderDetail[i].color+" </td>" +
+            "<td>"+data.getOrderDetail[i].size+" </td>" +
+            "<td>"+data.getOrderDetail[i].packages+" </td>" +
+            "<td>"+data.getOrderDetail[i].price+" </td>" +
+           "<td>"+data.getOrderDetail[i].num+" </td></tr>" ;
+        }
+        $("#tbodyId").html(content1+title2+content2);
+    }
+
+    /*按类别获取商品*/
+    function getCategoryGoods(pageSize, pageIndex) {
+        $.post('/getGoods.do', {
+                'pageSize': pageSize,
+                'pageIndex': pageIndex,
+                'CategoryId': $("#selectCategory option:selected").val()
+            },
+            function (data) {
+                dressContent(data);
+            });
+
+    }
+
+    function dressContent(data) {
+        var ss = "";
+        var editorObj;
+        console.log(data);
+        for (var i = 0; i < data.length; i++) {
+
+            ss += "<tr class='text-c va-m'>" +
+                "<td width='40'><input name='goods_names[]' type='checkbox' value='1234567'></td>" +
+                "<td>" + data[i].order + "</td>" +
+                "<td><a href='' target='_blank'>" + data[i].name + "</a></td>" +
+                "<td>" + data[i].category + "</td>" +
+                "<td class='td-status'>" + data[i].storeNum + "</td>" +
+                "<td class='td-status'>" + data[i].count + "</td>" +
+                "<td class='td-status'>" + data[i].price + "</td>" +
+                "<td class='td-status'>" + data[i].status + "</td>" +
+                "<td class='td-status'>" + data[i].type + "	</td>" +
+                "<td class='td-status'>	" + data[i].isTop + "	</td>" +
+                "<td class='td-manage'>" +
+                "<a class='button_type' style='background-color: #1b97e0de'  onclick=jump('product-color-list.html?&id=" + data[i].id + "') title='团颜色'>团颜色</a>" +
+                "<a class=' button_type' style='background-color: #1b97e0de' onclick=jump('product-package-list.html?&id=" + data[i].id + "')  title='团套餐'>团套餐</a>" +
+                "<a style='background-color: #1b97e0de' class=' button_type'  onclick='editor(" + data[i].id + ")' title='商品编辑'>商品编辑</a>" +
+                "<a style='background-color: red' class='button_type'  onclick='product_del(" + data[i].id + ")' title='删除'>删除</a>" +
+                "<a style='background-color: #29d60ad4' class=' button_type' onclick=jump('appraises.html?&id=" + data[i].id + "&name=" + data[i].name + "') title='评论'>评论</a>" +
+                "</td>tr>";
+        }
+        changeSize();
+        $('#tbodyId').html(ss);
+    }
+
+    function product_del(getId) {
+
+        var msg = "您真的确定要删除吗？\n\n请确认！";
+        if (confirm(msg) == true) {
+            $.post('/delProduct.do', {'getId': getId}, function (data) {
+                layer.msg(data, {icon: 2, time: 2000});
+                window.location.reload();
+            })
+            return;
+        } else {
+            return;
+        }
+
+    }
+
+    function jump(getId) {
+        window.location.href = getId;
+    }
+
+    function getFileUrl(sourceId) {
+        var url;
+        if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+            url = document.getElementById(sourceId).value;
+        }
+        else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+            url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+        }
+        else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+            url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+        }
+        return url;
+    }
+
+    function getQueryVariable(variable) {
+
+        var url = decodeURIComponent(window.location.href)
+        console.log(url);
+        var query = "";
+        if (url.indexOf("?") != -1) {
+            query = url.substr(url.indexOf("?") + 1);
+        }
+        console.log(query);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+
+</script>
+</body>
+</html>

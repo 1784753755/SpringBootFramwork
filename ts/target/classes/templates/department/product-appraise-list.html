@@ -1,0 +1,249 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="../li
+b/html5shiv.js"></script>
+<script type="text/javascript" src="../lib/respond.min.js"></script>
+
+<![endif]-->
+	<link rel="stylesheet" type="text/css" href="../static/admin_ui/css/iconfont.css" />
+
+<link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
+	<link rel="stylesheet" href="../lib/layer/2.4/skin/layer.css"
+          id="layui_layer_skinlayercss" style="">
+<!--[if IE 6]>
+<script type="text/javascript" src="../lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>添加产品分类</title>
+	<style type="text/css">
+		.showAlert{
+			text-align: center;
+			padding: 5px;
+			height: 50px;
+			width: 200px;
+			border: 1px seagreen solid;
+			position: absolute;
+			background-color: green;
+			border-radius: 11px;
+			margin-top: -15%;
+			margin-left: 40%;
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+<div class="page-container">
+	<form  class="form form-horizontal" id="form-user-add" enctype="multipart/form-data">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				商品名称：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input type="text" class="input-text" value="" placeholder="" id="product-name" readonly="true" >
+					<input type="text" class="input-text" value="" placeholder="" id="productId" name="productName" style="visibility: hidden">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>
+				头像：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<div class="formControls col-xs-8 col-sm-9" >
+				<div id="inputs"> <input id="file_upload_photo" name="args[file_main_photo]" type="file"
+										 onchange="change_img(this.id,'goods_img_photo')"></div>
+				<div >
+					<img src="" id="goods_img_photo" style="height: 142px;width: 142px;border: 1px solid;">
+				</div>
+			</div>
+		</div>
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2">
+				<span class="c-red">*</span>
+				姓名：</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input type="text" class="input-text" value="" placeholder="" id="user-name" name="customername">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>
+				排序值：&nbsp;&nbsp;&nbsp;</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input type="text" class="input-text" value="0" placeholder="" id="order-value" name="product-appraise-order-value"  >
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>
+				评论：&nbsp;&nbsp;&nbsp;</label>
+			<div class="formControls col-xs-6 col-sm-6">
+				<input type="text" class="input-text" value="" placeholder="" id="appraise-content" name="product-appraise-content"  >
+			</div>
+		</div>
+
+		<!--增加图册-->
+		  <div class="row cl">
+          <label class="form-label col-xs-4 col-sm-2"><span class="c-red">*</span>
+				图册：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <div id="listimg">
+                    <input id="sourceId" name="args[file_appraise_photo]" type="file"
+                           onchange="change_imgs(this.id,'goods_appraise_photo')"></div>
+                <div id="goods_appraise_photo">
+                    <img src="">
+                </div>
+            </div>
+        </div>
+		<div class="row cl">
+		<div class="col-9 col-offset-2">
+			<input class="btn btn-primary radius"   style="width: 72px;"onclick="subCategory()"  value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			<input class="btn btn-primary radius"    style="width: 72px;background-color: #908686; border-color:#9E9E9E" onclick="reload()" value="&nbsp;&nbsp;取消&nbsp;&nbsp;">
+		</div>
+
+</div>
+	</form>
+	<div class="showAlert" id="tip">
+      <div style="color: whitesmoke;padding: 13px">名字不能为空哦</div>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script>
+<script  type="text/javascript"  src="../lib/layer/2.4/layer.js"></script>
+<script type="text/javascript">
+	  var all = 1;
+        var index = 1;
+	function change_imgs(sourceId, targetId) {
+            $('#' + sourceId).addClass("hide");
+            var iId = 'sourceId' + index;
+            var name = 'args[file_appraise_photo]' + index;
+            if (all > 3) {
+                alert("只能加三张哦!");
+                return 0;
+            }
+            $("#listimg").append("<input id=" + iId + " name=args[file_appraise_photo] type='file'  onchange=" + "change_imgs(this.id,'goods_appraise_photo') >");
+
+            var imgs = document.getElementById(targetId);
+            var imgId = 'img' + (index - 1);
+            var bId = 'b' + (index - 1);
+            var url = getFileUrl(sourceId);
+            imgs.innerHTML += "<span ><button type='button'  id=" + bId + " onclick=delete_One('" + imgId + "'" + ",'" + sourceId + "'" + ",'" + bId + "')>取消</button></span><img id=" + imgId + " src=" + url + " style='width:120px;height:72px;border:1px solid;margin-top:10px;'>";
+            index++;
+            all++;
+
+        }
+
+  function delete_One(imgId, sourceId, butID) {
+            /* getInput();*/
+            $('#' + imgId).remove();
+            $('#' + butID).remove();
+            $('#' + sourceId).remove();
+            all--;
+        }
+   function getFileUrl(sourceId) {
+            var url;
+            if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+                url = document.getElementById(sourceId).value;
+            }
+            else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            return url;
+        }
+    function getQueryVariable(variable) {
+
+       var  url=  decodeURIComponent(window.location.href)
+		console.log(url);
+        var query="";
+         if (url.indexOf("?") != -1) {
+                query = url.substr(url.indexOf("?") + 1);
+          }
+         console.log(query);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if (pair[0] == variable) {
+                return pair[1];
+            }
+        }
+        return (false);
+    }
+
+     $(function () {
+        $("#product-name").val(getQueryVariable("name"));
+
+		 $("#productId").val(getQueryVariable("id"));
+     })
+	 function subCategory() {
+		if( verification()==true) submitForm() ;
+    }
+
+	 function submitForm() {
+            var form = new FormData(document.getElementById("form-user-add"));
+            $.ajax({
+                url: "/addApprasise.do",
+                type: "post",
+                data: form,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    alert('修改成功');
+                    window.location.reload();
+                },
+                error: function (e) {
+                    alert("错误！！");
+                    window.clearInterval(timer);
+                }
+            });
+        }
+     function verification() {
+            if ($("input[name='product-appraise-content']").val() == "") {
+                layer.msg('评论不能为空', {icon: 2, time: 2000});
+                $("input[name='product-appraise-content']").focus();
+                return false;
+            }
+           if ($("input[name='product-appraise-order-value']").val() == "") {
+                layer.msg('排序值不能为空', {icon: 2, time: 2000});
+                $("input[name='product-appraise-order-value']").focus();
+                return false;
+            }
+            return true;
+ }
+     function  reload() {
+	    window.location.reload();
+
+     }
+     function getFileUrl1(sourceId) {
+            var url;
+            if (navigator.userAgent.indexOf("MSIE") >= 1) { // IE
+                url = document.getElementById(sourceId).value;
+            }
+            else if (navigator.userAgent.indexOf("Firefox") > 0) { // Firefox
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            else if (navigator.userAgent.indexOf("Chrome") > 0) { // Chrome
+                url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+            }
+            return url;
+        }
+     function change_img(sourceId, targetId) {
+            console.log($("#" + sourceId).val());
+            var url = getFileUrl1(sourceId);
+            var imgPre = document.getElementById(targetId);
+            imgPre.src = url;
+        }
+
+
+</script>
+
+</body>
+</html>

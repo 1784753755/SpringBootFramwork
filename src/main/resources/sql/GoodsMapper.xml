@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.GoodsDao">
+
+    <resultMap id="goods" type="com.model.Goods">
+        <id property="goodsId" column="goods_id"/>
+        <result property="title" column="title"/>
+        <result property="goodsCategory" column="goods_category"></result>
+        <result property="goodsImg" column="goods_img"></result>
+        <result property="goodsListImg" column="goods_list_img"></result>
+        <result property="goodsUnit" column="goods_unit"></result>
+        <result property="goodsSpec" column="goods_spec"></result>
+        <result property="goodsAddress" column="goods_address"></result>
+        <result property="goodsColor" column="goods_color"></result>
+        <result property="goodsStore" column="goods_store"></result>
+        <result property="goodsLabel" column="goods_label"></result>
+        <result property="goodsDetail" column="goods_detail"></result>
+        <result property="goodsOrder" column="goods_order"></result>
+        <result property="goodsCount" column="goods_count"></result>
+        <result property="goodsPrice" column="goods_price"></result>
+        <result property="goodsOldPrice" column="goods_old_price"></result>
+        <result property="status" column="status"></result>
+        <result property="type" column="type"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="goodsSize" column="goods_size"></result>
+        <result property="uId" column="uid"></result>
+        <result property="goodsMoney" column="goods_moneytype"></result>
+        <result property="total" column="total"></result>
+        <result property="isTop" column="is_top"></result>
+        <result property="goodsOnlyPrice" column="goods_only_price"></result>
+        <result property="isSort" column="is_sort"></result>
+    </resultMap>
+
+    <select id="getGoods" resultMap="goods">
+        select * from GOODS_GOODS ORDER BY goods_order DESC
+    </select>
+
+    <select id="getGoodsByType" resultMap="goods">
+        select * from GOODS_GOODS WHERE  goods_category=#{categoryName}    ORDER BY goods_order DESC
+    </select>
+
+    <select id="getCountNum" resultType="java.lang.Integer">
+        select count(*) from GOODS_GOODS;
+    </select>
+
+    <select id="getCountNumByCategory" resultType="java.lang.Integer">
+        select count(*) from GOODS_GOODS WHERE goods_category=#{categoryId} ;
+    </select>
+
+    <select id="getGoodsById" resultMap="goods">
+       select * from GOODS_GOODS WHERE goods_id=#{ID}
+    </select>
+
+    <select id="getGoodsByName" resultMap="goods">
+         select * from GOODS_GOODS WHERE title=#{getName}
+    </select>
+
+    <insert id="setGoods" parameterType="com.model.Goods">
+        INSERT  INTO  GOODS_GOODS(
+        title,
+        goods_category,
+        goods_img,
+        goods_list_img,
+        goods_unit,
+        goods_spec,
+        goods_address,
+        goods_color,
+        goods_store,
+        goods_label,
+        goods_detail,
+        goods_order,
+        goods_count,
+        goods_price,
+        goods_old_price,
+        status,
+        type,
+        create_time,
+        update_time ,
+        goods_size ,
+        uid ,
+        goods_moneytype,
+        total ,
+        is_top ,
+        goods_only_price,
+        is_sort) VALUES(
+         #{title},
+#{goodsCategory},
+#{goodsImg},
+#{goodsListImg},
+#{goodsUnit},
+#{goodsSpec},
+#{goodsAddress},
+#{goodsColor},
+#{goodsStore},
+#{goodsLabel},
+#{goodsDetail},
+#{goodsOrder},
+#{goodsCount},
+#{goodsPrice},
+#{goodsOldPrice},
+#{status},
+#{type},
+#{createTime},
+#{updateTime},
+#{goodsSize  },
+#{uId},
+#{goodsMoney },
+#{total},
+#{isTop},
+#{goodsOnlyPrice},
+#{isSort}
+);
+    </insert>
+    <update id="updateGood" parameterType="com.model.Goods">
+       UPDATE  GOODS_GOODS set
+        title=  #{title},
+        goods_category=#{goodsCategory},
+
+        goods_img=#{goodsImg},
+
+        goods_list_img=#{goodsListImg},
+
+        goods_unit=#{goodsUnit},
+
+        goods_spec=#{goodsSpec},
+
+        goods_address=#{goodsAddress},
+
+        goods_color=#{goodsColor},
+
+        goods_store=#{goodsStore},
+
+        goods_label=#{goodsLabel},
+
+        goods_detail=#{goodsDetail},
+
+        goods_order=#{goodsOrder},
+
+        goods_count=#{goodsCount},
+
+        goods_price=#{goodsPrice},
+
+        goods_old_price=#{goodsOldPrice},
+
+        status=#{status},
+
+        type=#{type},
+
+        create_time=#{createTime},
+
+        update_time=#{updateTime},
+
+        goods_size=#{goodsSize  },
+
+        uid=#{uId},
+
+        goods_moneytype=#{goodsMoney },
+
+        total =#{total},
+
+        is_top=#{isTop},
+
+        goods_only_price=#{goodsOnlyPrice},
+
+        is_sort=#{isSort} WHERE goods_id=#{goodsId};
+    </update>
+
+    <delete id="delGoods">
+        DELETE  from GOODS_GOODS WHERE goods_id=#{productId}
+    </delete>
+
+
+    <!--display前台展示 -->
+
+    <select id="getProductDisplay" resultMap="goods">
+        select * from goods_goods;
+    </select>
+
+    <!-- <insert id="addConfig" parameterType="com.model.Config">
+         INSERT INTO  CONFIG(title,web_meta,web_name,web_description,uid,ip_list,email_name,port,email_pwd,email_type,get_email,web_code,web_successcode,customer_service,Qr_code,check_address,check_postcard,line_state,shipping_costs,large_turntable_state,prise_text,prize_type,prize_img,sms_verification_code,model)
+          VALUES (#{title},#{webMeta},#{webName},#{webDescription},#{configId},#{ipList},#{emailName},#{port},#{emailPwd},#{emailType},#{getEmail},#{webCode},#{webSuccessCode},#{customerService},#{QrCode},#{checkAddress},#{checkPostcard},#{lineState},#{shippingCosts},#{largeTurntableState},#{priseText},#{prizeType},#{prizeImg},#{smsVerificationCode},#{model})
+     </insert>
+     &lt;!&ndash;同步更新 uid=config_id&ndash;&gt;
+     <update id="updateUid">
+         UPDATE
+         CONFIG
+         SET UID=CONFIG_ID
+
+     </update>-->
+
+    <!--全局属性-->
+    <!--
+        <sql id="husbans" >
+            id, userName
+        </sql>
+        <sql id="wifes" >
+            id, userName,h_id
+        </sql>-->
+
+
+    <!--制作级联的乐趣在于我拥有了办事的能力-->
+    <!--<update id="update" parameterType="com.example.testsm.domain.entity.UserEntity" >
+        UPDATE
+        users
+        SET
+        <if test="userName != null">userName = #{userName},</if>
+        <if test="passWord != null">passWord = #{passWord},</if>
+        nick_name = #{nickName}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        users
+        WHERE
+        id =#{id}
+    </delete>-->
+
+</mapper>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dao.OrderDao">
+
+    <resultMap id="order" type="com.model.Order">
+        <id property="orderId" column="order_id"/>
+        <result property="orderNum" column="order_num"/>
+        <result property="phoneNumb" column="phone_numb"></result>
+        <result property="ipNumb" column="ip_numb"></result>
+        <result property="Ip" column="ip"></result>
+        <result property="goodsTatalPrice" column="goods_total_price"></result>
+        <result property="userName" column="user_name"></result>
+        <result property="userPhone" column="user_phone"></result>
+        <result property="userPostal" column="user_postal"></result>
+        <result property="userConnect" column="user_connect"></result>
+        <result property="userEmail" column="user_email"></result>
+        <result property="userAddress" column="user_address"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="uId" column="uid"></result>
+        <result property="domainHostUrl" column="domainHostUrl"></result>
+        <result property="moneyType" column="money_type"></result>
+        <result property="source" column="source"></result>
+        <result property="state1" column="state1"></result>
+        <result property="state2" column="state2"></result>
+        <result property="state3" column="state3"></result>
+        <result property="type1" column="type1"></result>
+        <result property="timeOfReceipt" column="Time_of_receipt"></result>
+        <result property="DeliveryMethod" column="Delivery_Method"></result>
+        <result property="prizeCode" column="prize_code"></result>
+        <result property="goodsPackage" column="goods_package"></result>
+    </resultMap>
+    <!--测试连接用类-->
+    <select id="getAllOrder" resultMap="order">
+        select * from GOODS_ORDER
+    </select>
+    <select id="getCountOrder" resultType="java.lang.Integer">
+        select count(*) from GOODS_ORDER
+    </select>
+    <!--分页查询-->
+    <select id="getOrderBySelect" resultMap="order">
+        select * from GOODS_ORDER
+    </select>
+    <!--存储订单 -->
+
+    <select id="getOrderByWebName" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE domainHostUrl=#{webName}
+    </select>
+ <!--   <select id="getOrderByProdcutName" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE domainHostUrl=#{ProductName}
+    </select>-->
+    <select id="getOrderByUserName" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE user_name=#{UserName}
+    </select>
+    <select id="getOrderByUserTel" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE user_phone=#{UserTel}
+    </select>
+    <select id="getOrderByIP" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE ip=#{IP}
+    </select>
+    <select id="getOrderByOrderNum" resultMap="order">
+        SELECT  * from GOODS_ORDER WHERE order_num=#{OrderNum}
+    </select>
+
+
+
+    <insert id="saveOrder" parameterType="com.model.Order">
+        INSERT  INTO  goods_order(
+               order_id,
+               order_num,
+               phone_numb,
+               ip_numb,
+               ip,
+               goods_tatal_price,
+               user_name,
+               user_phone,
+               user_postal,
+               user_connect,
+               user_email,
+               user_address,
+               create_time,
+               uid,
+               domainHostUrl,
+               money_type,
+               source,
+               state1,
+               state2,
+               state3,
+               type1,
+               Time_of_receipt,
+               Delivery_Meth,
+               prize_code,
+               goods_package)VALUES (
+               #{orderId},
+               #{orderNum},
+               #{phoneNumb},
+               #{ipNumb},
+               #{Ip},
+               #{goodsTatalPrice},
+               #{userName},
+               #{userPhone},
+               #{userPostal},
+               #{userConnect},
+               #{userEmail},
+               #{userAddress},
+               #{createTime},
+               #{uId},
+               #{domainHostUrl},
+               #{moneyType},
+               #{source},
+               #{state1},
+               #{state2},
+               #{state3},
+               #{type1},
+               #{timeOfReceipt},
+               #{DeliveryMeth},
+               #{prizeCode},
+               #{goodsPackage})
+    </insert>
+    <!--更新订单-->
+    <update id="updateOrder" parameterType="com.model.Order">
+             UPDATE goods_order set order_id=#{orderId},
+               order_num=#{orderNum},
+               phone_numb=#{phoneNumb},
+               ip_numb=#{ipNumb},
+               ip=#{Ip},
+               goods_tatal_price=#{goodsTatalPrice},
+               user_name=#{userName},
+               user_phone=#{userPhone},
+               user_postal=#{userPostal},
+               user_connect=#{userConnect},
+               user_email=#{userEmail},
+               user_address=#{userAddress},
+               create_time=#{createTime},
+               uid=#{uId},
+               domainHostUrl=#{domainHostUrl},
+               money_type=#{moneyType},
+               source=#{source},
+               state1=#{state1},
+               state2=#{state2},
+               state3=#{state3},
+               type1=#{type1},
+               Time_of_receipt=#{timeOfReceipt},
+               Delivery_Meth=#{DeliveryMeth},
+               prize_code=#{prizeCode},
+               goods_packag=#{goodsPackage};
+    </update>
+    <!--查询特定Id订单-->
+    <select id="getOrderById" resultMap="order">
+        select * from goods_order where order_id=#{OrderId}
+    </select>
+    <!--查询对应日期时间段订单  通过分页来做  设置缓存-->
+    <select id="getOrderTime" resultMap="order">
+        select * from goods_order ORDER  BY  create_time desc where create_time>=#{beginTime} and #{endTime}>=create_time
+    </select>
+
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dao.AdminDao">
+
+    <resultMap id="admin" type="com.model.Admin">
+        <id property="adminId" column="admin_id"/>
+        <result property="name" column="admin_name"/>
+        <result property="pwd" column="admin_pwd"></result>
+        <result property="changePwd" column="admin_changepwd"></result>
+        <result property="email" column="admin_email"></result>
+        <result property="avatar" column="admin_avatar"></result>
+        <result property="hits" column="admin_hits"></result>
+
+        <result property="ip" column="admin_ip"></result>
+        <result property="lastIp" column="admin_last_ip"></result>
+        <result property="time" column="admin_time"></result>
+        <result property="lastTime" column="admin_last_time"></result>
+        <result property="addTime" column="admin_addtime"></result>
+        <result property="status" column="admin_status"></result>
+
+         <result property="power" column="admin_power"></result>
+    </resultMap>
+
+    <select id="getAdmins" resultMap="admin">
+        select * from ADMIN ;
+    </select>
+    <!--获取对应id 的admin-->
+    <select id="getAdminById" resultMap="admin">
+        SELECT  * from Admin where admin_id=#{getAdminId}
+    </select>
+    <!--获取最大id-->
+    <select id="getMaxId" resultType="java.lang.Integer">
+        SELECT max(admin_id) from Admin;
+    </select>
+    <select id="getAdminByGetName" resultMap="admin">
+        SELECT  * from  admin  where  admin_name=#{getName} and admin_pwd=#{getPwd}
+    </select>
+    <insert id="addAdmin" parameterType="com.model.Admin">
+        INSERT  INTO  ADMIN(admin_id,admin_name,admin_pwd,admin_changepwd,admin_email,
+       admin_avatar,admin_hits,admin_ip,admin_last_ip,admin_time,admin_last_time,admin_addtime,admin_status,power)
+         VALUES (#{adminId},#{name},#{pwd},#{changePwd},#{email},#{avatar},#{hits},#{ip},#{lastIp},#{time},#{lastTime},#{addTime},#{status},#{admin_power});
+    </insert>
+    <!--全局属性-->
+    <!--
+        <sql id="husbans" >
+            id, userName
+        </sql>
+        <sql id="wifes" >
+            id, userName,h_id
+        </sql>-->
+
+
+    <!--制作级联的乐趣在于我拥有了办事的能力-->
+    <!--<update id="update" parameterType="com.example.testsm.domain.entity.UserEntity" >
+        UPDATE
+        users
+        SET
+        <if test="userName != null">userName = #{userName},</if>
+        <if test="passWord != null">passWord = #{passWord},</if>
+        nick_name = #{nickName}
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long" >
+        DELETE FROM
+        users
+        WHERE
+        id =#{id}
+    </delete>-->
+
+</mapper>

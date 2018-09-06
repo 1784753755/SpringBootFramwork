@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.AppraiseDao">
+
+
+    <resultMap id="appraise" type="com.model.Appraise">
+        <id property="appraiseId" column="appraise_id"/>
+        <result property="upper" column="upper"/>
+         <result property="avatarImg" column="avatar_img"/>
+        <result property="describle" column="describle"/>
+        <result property="imgList" column="img_list"/>
+        <result property="status" column="status"/>
+        <result property="addTime" column="addtime"/>
+        <result property="order" column="orders"/>
+        <result property="commentator" column="commentator"/>
+    </resultMap>
+    <select id="getAllAppraiseAll" resultMap="appraise">
+        SELECT * from goods_appraise  WHERE upper=#{productId} ORDER BY orders  DESC
+    </select>
+    <select id="count" resultType="java.lang.Integer">
+        SELECT count(*) FROM goods_appraise WHERE upper=#{CountProductId}
+    </select>
+    <select id="Appraise" resultMap="appraise">
+        SELECT * from goods_appraise where appraise_id=#{appraiseId}
+    </select>
+   <update id="updateAppraise" >
+       UPDATE  goods_appraise SET upper=#{upper},avatar_img=#{avatarImg},describle=#{describle},img_list=#{imgList},status=#{status},addtime=#{addTime},orders=#{order},commentator=#{commentator}
+       WHERE  appraise_id=#{appraiseId}
+   </update>
+   <delete id="delAppraise">
+       DELETE  from goods_appraise where appraise_id=#{delAppraiseId}
+   </delete>
+    <insert id="saveAppraise" parameterType="com.model.Appraise">
+        INSERT INTO  goods_appraise(upper,avatar_img,describle,img_list,status,addtime,orders,commentator)
+        VALUES (#{upper},#{avatarImg},#{describle},#{imgList},#{status},#{addTime},#{order},#{commentator})
+    </insert>
+</mapper>
