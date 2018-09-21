@@ -92,12 +92,7 @@ public class OrderController {
     String getWay=    request.getParameter("way");
     String getContent=request.getParameter("content");
      List<Order> getList=null;
-         /*<option value="1">网站名称</option>
-                <option value="2">商品名称</option>
-                <option value="3">客户姓名</option>
-                <option value="4">客户手机</option>
-                <option value="5">IP查询</option>
-                <option value="6">订单号查询</option>*/
+
     switch (getWay.trim()){
             case "1":{
              getList= orderService.getAuthorByWebName(getContent.trim());
