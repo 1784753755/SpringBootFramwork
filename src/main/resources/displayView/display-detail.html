@@ -309,7 +309,7 @@
                         </svg>
                     </a>
                     <input type="text" readonly="true" value="1"
-                           style="width: 50px;border: 1px solid; text-align: center" id="countNum">
+                           style="width: 50px;border: 1px solid; text-align: center" id="countNum"  >
                     <a onclick="teamePrice('3')">
                         <svg class="icon"
                              style="width: 30px; height: 27px;vertical-align: middle;fill: currentColor;overflow: hidden;"
@@ -443,13 +443,17 @@
         setPrice()
     }
   function setPrice(){
-        var count=priceItself;
+      var count=priceItself;
       var  colorPrice = $("#wrap1 input[name='optradio1']:checked ").attr("id");
       var packagePrice = $("#wrap2 input[name='optradio']:checked ").attr("id");
+     var coutNum=$("#countNum").val();
+
       if(colorPrice!=null)
       count+=priceMap.get(colorPrice);
       if(packagePrice!=null)
           count+=priceMap.get(packagePrice);
+      if(coutNum!="")
+          count=coutNum*count;
       $("#price_now_all").html("總價 NT$:"+count);
     }
     /*選擇顏色*/
@@ -484,6 +488,7 @@
             countnum++;
         }
         $("#countNum").val(countnum);
+        setPrice();
     }
 
     /*验证是否加入购物车没选颜色套餐的一律取消*/
@@ -497,21 +502,22 @@
         }
         /*商品价+套餐价+颜色价*/
         var price =
-            /*将产品设置到cookie中*/
-            addProduct(getVal.attr("id"), getVal2.attr("id"), $("#name_alert").text(), $("#countNum").val());
+            /*将产品设置到cookie中  ----获取选中option id值getVal2.attr("id")*/
+            addProduct(getVal.attr("id"), getVal2.attr("id"), $("#name_alert").text(), $("#countNum").val(),getVal.val(), getVal2.val());
           window.location.href="display-car.html";
     }
 
     //JSON.parse
     //JSON.stringify
-    function addProduct(color_id, package_id, name, num) {
+    function addProduct(color_id, package_id, name, num,color_idVal, package_idVal) {
         //判断是否存在cookie，或是第一次添加
         var arr = cookieUtil.getCookie("car") ?
             JSON.parse(cookieUtil.getCookie("car")) : [];
         var g_id = productId;
-        var g_color = color_id;
-        var g_package = package_id;
-        var g_price = priceMap.get(g_color) + priceMap.get(g_package);
+        var g_color = color_idVal;
+        var g_colorId=$('#'+color_id).val()
+        var g_package = package_idVal;
+        var g_price = (priceItself+priceMap.get(color_id) + priceMap.get(package_id))*$("#countNum").val();
 
         var g_name = name;
         var g_num = num;
@@ -536,7 +542,7 @@
                 "g_img":cookieSetImg,
                 "g_color_name":globalColorName,
                 "g_package_name":globalPackageName,
-                num: g_num
+                "num": g_num
             }
             arr.push(goods);
         }

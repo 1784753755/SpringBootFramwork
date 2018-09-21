@@ -1,6 +1,8 @@
 package com.service;
 
+import com.model.GotSubOrder;
 import com.model.Order;
+import com.model.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,4 +28,5 @@ public interface OrderService {
     List<Order> getAuthorByIP(String trim);
 
     List<Order> getAuthorByOrderNum(String trim);
+    void  makeOrder(List<GotSubOrder> list, User user);
 }

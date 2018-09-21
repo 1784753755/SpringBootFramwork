@@ -172,30 +172,37 @@
     /*设置body内容*/
     function setContent() {
         var setCarProduct=JSON.parse(cookieUtil.getCookie("car"));
+        console.log(setCarProduct);
         var body_title = "<div class='row' style='padding:15px'>" +
             "<div class='col-sm-6 col-md-6'><span style='font-weight: bold;font-size: 20px;'>我的購物車</span></div>" +
             "<div class='col-sm-6 col-md-6'></div>";
         var body_body ="";
+        var allPrice=0;
         for(var i=0;i<setCarProduct.length;i++){
-             body_body+= "<div class='row write_row'>" +
-               "<div class='col-sm-4 col-md-4' style='background-repeat: no-repeat ;text-align: center'>" +
-               "<a href='#' class='thumbnail'>" +
-               "<img src='img/cloth2.jpg' class='img_product_car' alt='...'> </a> </div>" +
-               "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
-               "<div class='d-flex flex-column mb-3' style='text-align: left'>" +
-               "<div class='p-2 ' style='padding:0.0rem !important;'><h4 class='shortdesc '><b style='color:#f00'>"+setCarProduct[i].g_name+"</b></h4></div>" +
-               " <div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_color_name+"</p></div>" +
-                 "<div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_package_name+"</p></div>" +
-               "</div>"+
-            "<div class='d-flex flex-column mb-3'>" +
-            "<span class='span_product_car'>HK$" +setCarProduct[i].g_price+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style='color:black'>X"+setCarProduct[i].num+"</b></span>" +
-            "<span class='span_product_button' onclick=deleteProduct('"+setCarProduct[i].g_name+"'"+")><img src='img/del2.png' style='width:30px'> </span>" +
-            "</div></div></div>"
+            allPrice=setCarProduct[i].g_price*setCarProduct[i].num+allPrice;
+            var body_all= "<div class='col-sm-4 col-md-4' style='background-repeat: no-repeat ;text-align: center'>" +
+                "<a href='#' class='thumbnail'>" +
+                "<img src='"+setCarProduct[i].g_img+"' class='img_product_car' alt='...'> </a> </div>" +
+                "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
+                "<div class='d-flex flex-column mb-3' style='text-align: left'>" +
+                "<div class='p-2 ' style='padding:0.0rem !important;'><h4 class='shortdesc '><b style='color:#f00'>"+setCarProduct[i].g_name+"</b></h4></div>" +
+                " <div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_color_name+"</p></div>" +
+                "<div class='p-2 ' style=' padding:0.0rem !important;'><p class='text-l'>"+setCarProduct[i].g_package_name+"</p></div>" +
+                "</div>"+
+                "<div class='d-flex flex-column mb-3'>" +
+                "<span class='span_product_car'>HK$" +setCarProduct[i].g_price+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b style='color:black'>X"+setCarProduct[i].num+"</b></span>" +
+                "<span class='span_product_button' onclick=deleteProduct('" + setCarProduct[i].g_color + "'" + ",'" + setCarProduct[i].g_package + "'" + ",'" + setCarProduct[i].g_id + "')><img src='img/del2.png' style='width:30px'> </span>" +
+                "</div></div></div>";
+            if(i==setCarProduct.length-1)
+             body_body+= "<div class='row write_row' style='margin-bottom: 200px;'>" +body_all;
+            else
+                body_body+= "<div class='row write_row' >" +body_all;
+
         }
 
         var body_bottom = "<nav class='navbar navbar-expand-sm bg-col navbar-dark fixed-bottom' style='height: 63px; background-color:whitesmoke;'>" +
             "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
-            "<p  style='margin-bottom: 0'><em class='dis-block' style='font-size: 13px'>合计：</em><span id='goods_subtotal' style='color:red'>NT$3396</span></p>" +
+            "<p  style='margin-bottom: 0'><em class='dis-block' style='font-size: 13px'>合计：</em><span id='goods_subtotal' style='color:red'>NT$</span></p>" +
             "<p style='margin-bottom: 0;font-size:13px;color:red'>不含運費</p> </div>" +
 
             "<div class='col-sm-4 col-md-4' style='height: 62px;  width: 111px;color: wheat;'>" +
@@ -203,12 +210,30 @@
             "</div></nav>"
 
         $("#setBody").append(body_title+body_body+body_bottom)
-        
 
+        $("#goods_subtotal").after(allPrice);
+        allPrice="";
     }
-    function deleteProduct(name) {
-        cookieUtil.unsetCookie("car");
-        cookieUtil.getCookie(name);
+
+
+    function deleteProduct(color_id, package_id, g_id) {
+        console.log(color_id,package_id,g_id)
+       //判断是否存在cookie，或是第一次添加
+        var arr = cookieUtil.getCookie("car") ?
+            JSON.parse(cookieUtil.getCookie("car")) : [];
+        //遍历cookie，判断是否已经存在该商品
+        for(var i = 0; i < arr.length; i++) {
+            if (arr[i].g_id == g_id && arr[i].g_color == color_id && arr[i].g_package == package_id) {
+                //已经存在该商品，商品数量+1
+                    arr.splice(i,1); //删除下标为i的元素
+                   break;
+            }
+        }
+        //把更新后的数组序列化为JSON字符串，保存到cookie中
+        var date = new Date();
+        date.setDate(date.getDate() + 365); //保存365天
+        //保存cookie
+        cookieUtil.setCookie("car", JSON.stringify(arr), date);
         window.location.reload()
     }
 </script>

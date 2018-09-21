@@ -20,9 +20,9 @@ public class Order {
     private String  domainHostUrl;
     private String  moneyType;
     private Integer source;
-    private String  state1;
+    private int  state1;
     private Integer state2;
-    private String  state3;
+    private int  state3;
     private String  type1;
     private String  timeOfReceipt;
     private String  DeliveryMeth;
@@ -196,11 +196,11 @@ public class Order {
         this.source = source;
     }
 
-    public String getState1() {
+    public int getState1() {
         return state1;
     }
 
-    public void setState1(String state1) {
+    public void setState1(int state1) {
         this.state1 = state1;
     }
 
@@ -212,11 +212,11 @@ public class Order {
         this.state2 = state2;
     }
 
-    public String getState3() {
+    public int getState3() {
         return state3;
     }
 
-    public void setState3(String state3) {
+    public void setState3(int state3) {
         this.state3 = state3;
     }
 

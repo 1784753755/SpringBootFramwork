@@ -5,16 +5,16 @@
 
     <resultMap id="orderDetail" type="com.model.OrderDetail">
         <!--"orderId","color_id","size_id","price","color","size","goods_id","img","num","package","package_id","title","money_type"-->
-        <id property="orderId" column="orderId"/>
+        <id property="orderId" javaType="java.lang.String" column="orderId"/>
         <result property="colorId" column="color_id"/>
         <result property="goodsId" column="goods_id"/>
-        <result property="sizeId" column="size_id"/>
-        <result property="price" column="price"/>
-        <result property="color" column="color"/>
-        <result property="size" column="size"/>
-        <result property="goodsId" column="goods_id"/>
-        <result property="img" column="img"/>
-        <result property="num" column="num"/>
+        <result property="sizeId"  column="size_id"/>
+        <result property="price"   column="price"/>
+        <result property="color"   column="color"/>
+        <result property="size"    column="size"/>
+
+        <result property="img"     column="img"/>
+        <result property="num"     column="num"/>
         <result property="packages" column="package"/>
         <result property="packageId" column="package_id"/>
         <result property="title" column="title"/>
@@ -23,4 +23,8 @@
     <select id="getDetailByOrderNum" resultMap="orderDetail">
         select * from goods_cat WHERE orderId=#{orderNum};
     </select>
+    <insert id="insertOrderDetail" parameterType="com.model.OrderDetail">
+        INSERT into goods_cat(orderId,color_id, goods_id,size_id,price,color,size,img,num,package,package_id,title,money_type)
+        VALUES (#{orderId},#{colorId},#{goodsId},#{sizeId},#{price},#{color},#{size},#{img},#{num},#{packages},#{packageId},#{title},#{moneyType})
+    </insert>
 </mapper>

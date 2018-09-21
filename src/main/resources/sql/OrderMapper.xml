@@ -9,7 +9,7 @@
         <result property="phoneNumb" column="phone_numb"></result>
         <result property="ipNumb" column="ip_numb"></result>
         <result property="Ip" column="ip"></result>
-        <result property="goodsTatalPrice" column="goods_total_price"></result>
+        <result property="goodsTatalPrice" javaType="java.lang.Float" column="goods_total_price"></result>
         <result property="userName" column="user_name"></result>
         <result property="userPhone" column="user_phone"></result>
         <result property="userPostal" column="user_postal"></result>
@@ -26,7 +26,7 @@
         <result property="state3" column="state3"></result>
         <result property="type1" column="type1"></result>
         <result property="timeOfReceipt" column="Time_of_receipt"></result>
-        <result property="DeliveryMethod" column="Delivery_Method"></result>
+        <result property="DeliveryMeth" column="Delivery_Method"></result>
         <result property="prizeCode" column="prize_code"></result>
         <result property="goodsPackage" column="goods_package"></result>
     </resultMap>
@@ -71,7 +71,7 @@
                phone_numb,
                ip_numb,
                ip,
-               goods_tatal_price,
+               goods_total_price,
                user_name,
                user_phone,
                user_postal,
@@ -88,7 +88,7 @@
                state3,
                type1,
                Time_of_receipt,
-               Delivery_Meth,
+               Delivery_Method,
                prize_code,
                goods_package)VALUES (
                #{orderId},
@@ -141,9 +141,9 @@
                state3=#{state3},
                type1=#{type1},
                Time_of_receipt=#{timeOfReceipt},
-               Delivery_Meth=#{DeliveryMeth},
+               Delivery_Method=#{DeliveryMeth},
                prize_code=#{prizeCode},
-               goods_packag=#{goodsPackage};
+               goods_package=#{goodsPackage};
     </update>
     <!--查询特定Id订单-->
     <select id="getOrderById" resultMap="order">

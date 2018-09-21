@@ -7,15 +7,19 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href="css/iconfont.css">
     <!--    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
-
+    <link rel="stylesheet" href="css/layer.css"
+          id="layui_layer_skinlayercss" style="">
     <script src="js/jquery.min.js"></script>
 
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/iconfont.js"></script>
+    <script src="js/cookieSession.js"></script>
+
+    <script
+            type="text/javascript"
+            src="js/layer.js"></script>
     <style>
-
-
 
 
         .img_product_car {
@@ -27,16 +31,13 @@
             padding: 10px 13px 6px;
         }
 
-
         img {
             width: 100%;
         }
 
-   .price-font{
-       text-align: right;
-   }
-
-
+        .price-font {
+            text-align: right;
+        }
 
         .text-l {
             text-align: left;
@@ -57,121 +58,66 @@
 </head>
 <body>
 
-<div class="row" style="    padding: 20px;">
-     <div class="col-sm-6 col-md-6" >商品列表</div>
-    <div class="col-sm-6 col-md-6" style="text-align: right" ><a href="display-car.html"><span style="    background-color: red; color: white;
+<div class="row" style="    padding: 20px;" id="Tags">
+    <div class="col-sm-6 col-md-6">商品列表</div>
+    <div class="col-sm-6 col-md-6" style="text-align: right"><a href="display-car.html"><span style="    background-color: red; color: white;
     font-weight: bold;
     border-radius: 7px;">&nbsp;&nbsp;修改&nbsp;&nbsp;</span></a></div>
 </div>
 <!--商品-->
 
- <div class="row write_row">
-    <div class="col-sm-4 col-md-4" style="background-repeat: no-repeat ;text-align: center">
-        <a href="#" class="thumbnail">
-            <img src="img/cloth2.jpg" class="img_product_car"
-                 alt="...">
-        </a>
-    </div>
-    <div class="col-sm-8 col-md-8" style="background-repeat: no-repeat ;text-align: center">
-        <div class="d-flex flex-column mb-3">
-            <div class="p-2 " style=" padding:0.0rem !important;">
-                <p class="text-l">SMILING防身逃生強光手電筒【第二入加300】2入
-            </p>
-            </div>
-          <div class="p-2 " style=" padding:0.0rem !important;    text-align: left; ">
-           <span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span><span style="float:right; ">x 1</span>
-        </div>
-        </div>
-    </div>
- </div>
- <div class="row write_row">
-    <div class="col-sm-4 col-md-4" style="background-repeat: no-repeat ;text-align: center">
-        <a href="#" class="thumbnail">
-            <img src="img/cloth2.jpg" class="img_product_car"
-                 alt="...">
-        </a>
-    </div>
-    <div class="col-sm-8 col-md-8" style="background-repeat: no-repeat ;text-align: center">
-        <div class="d-flex flex-column mb-3">
-            <div class="p-2 " style=" padding:0.0rem !important;">
-                <p class="text-l">SMILING防身逃生強光手電筒【第二入加300】2入
-            </p>
-            </div>
-          <div class="p-2 " style=" padding:0.0rem !important;    text-align: left; ">
-           <span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span><span style="float:right; ">x 1</span>
-        </div>
-        </div>
-    </div>
- </div>
- <div class="row write_row">
-    <div class="col-sm-4 col-md-4" style="background-repeat: no-repeat ;text-align: center">
-        <a href="#" class="thumbnail">
-            <img src="img/cloth2.jpg" class="img_product_car"
-                 alt="...">
-        </a>
-    </div>
-    <div class="col-sm-8 col-md-8" style="background-repeat: no-repeat ;text-align: center">
-        <div class="d-flex flex-column mb-3">
-            <div class="p-2 " style=" padding:0.0rem !important;">
-                <p class="text-l">SMILING防身逃生強光手電筒【第二入加300】2入
-            </p>
-            </div>
-          <div class="p-2 " style=" padding:0.0rem !important;    text-align: left; ">
-           <span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span><span style="float:right; ">x 1</span>
-        </div>
-        </div>
-    </div>
- </div>
-
 
 <div class="d-flex flex-column mb-3" style="padding:15px">
-            <div class="p-2 " >
+    <div class="p-2 ">
                 <span class="text-l" style="font-size: 17px;">商品金額
             </span>
-            </div>
-            <div class="p-2  price-font" >
-                <span class="text-l">商品總價:<span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span>
+    </div>
+    <div class="p-2  price-font">
+                <span class="text-l">商品總價:<span style="color: red;font-weight: bold"
+                                                id="needPrice">NT$&nbsp;&nbsp;</span>
             </span>
-            </div>
-            <div class="p-2 price-font"  >
-                <span class="text-l">商品滿減:<span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span>
+    </div>
+    <div class="p-2 price-font">
+                <span class="text-l">商品滿減:<span style="color: red;font-weight: bold"
+                                                id="reducePrice">NT$&nbsp;&nbsp;</span>
             </span>
-            </div>
-            <div class="p-2 price-font"  >
-                <span class="text-l">實際需付:<span style="color: red;font-weight: bold">NT$&nbsp;&nbsp;198,9</span>
+    </div>
+    <div class="p-2 price-font">
+                <span class="text-l">實際需付:<span style="color: red;font-weight: bold"
+                                                id="realPrice">NT$&nbsp;&nbsp;</span>
             </span>
-            </div>
+    </div>
 
 </div>
-<form style="padding:15px">
-  <div class="form-group">
-    <label for="name">請輸入您的姓名:</label>
-    <input type="email" class="form-control" id="name"  placeholder="填寫姓名" >
-  </div>
-  <div class="form-group">
-    <label for="tel">請輸入您的手機:</label>
-    <input type="text" class="form-control"  id="tel" placeholder="填寫手機號碼" >
-  </div>
-  <div class="form-group">
-    <label for="email">請輸入您的eamil:</label>
-    <input type="email" class="form-control" id="email" placeholder="填寫Email">
-  </div>
-  <div class="form-group">
-    <label for="postCode">請輸入您的郵編號碼:</label>
-    <input type="text" class="form-control" id="postCode" placeholder="填寫郵編號碼">
-  </div>
+<form style="padding:15px" id="subFormId">
     <div class="form-group">
-    <label for="address">請輸入您的詳細地址:</label>
-    <input type="text" class="form-control" id="address" placeholder="填寫詳細地址">
-  </div>
-     <div class="form-group">
-    <label for="Remarks">訂單附言:</label>
-    <input type="text" class="form-control" id="Remarks" placeholder="填寫附言">
-  </div>
-</form >
+        <label for="name">請輸入您的姓名:</label>
+        <input  name="uname" type="text" class="form-control" id="name" placeholder="填寫姓名">
+    </div>
+    <div class="form-group">
+        <label for="tel">請輸入您的手機:</label>
+        <input  name="utel" type="text" class="form-control" id="tel" placeholder="填寫手機號碼">
+    </div>
+    <div class="form-group">
+        <label for="email">請輸入您的eamil:</label>
+        <input  name="uemail" type="email" class="form-control" id="email" placeholder="填寫Email">
+    </div>
+    <div class="form-group">
+        <label for="postCode">請輸入您的郵編號碼:</label>
+        <input  name="upostcode" type="text" class="form-control" id="postCode" placeholder="填寫郵編號碼">
+    </div>
+    <div class="form-group">
+        <label for="address">請輸入您的詳細地址:</label>
+        <input  name="uaddress" type="text" class="form-control" id="address" placeholder="填寫詳細地址">
+    </div>
+    <div class="form-group">
+        <label for="Remarks">訂單附言:</label>
+        <input  name="uremarks" type="text" class="form-control" id="Remarks" placeholder="填寫附言">
+    </div>
+</form>
 <div class="d-flex flex-column mb-3" style="padding:15px">
-    <div class="p-2 " ></div>
-     <div class="p-2 " ></div>
+    <div class="p-2 "></div>
+    <div class="p-2 "></div>
 
 </div>
 
@@ -184,85 +130,133 @@
 
 
     <div class="col-sm-8 col-md-8" style="background-repeat: no-repeat ;text-align: center">
-        <p  style="margin-bottom: 0"><em class="dis-block" style="font-size: 13px">實際需付：</em><span
-               id="goods_subtotal" style="color:red">NT$ 3396</span></p>
+        <p style="margin-bottom: 0"><em class="dis-block" style="font-size: 13px">實際需付：</em><span
+                id="goods_subtotal" style="color:red">NT$</span></p>
 
     </div>
     <div class="col-sm-4 col-md-4" style="height: 62px;  width: 111px;color: wheat;">
-         <input type=" button " value="提交訂單" style="  height: 62px; width: 100%;  margin-left: 12px;color: wheat; background-color: #fe3939; text-align: center; ">
+        <input type=" button " value="提交訂單" onclick="summitOrder()"
+               style="  height: 62px; width: 100%;  margin-left: 12px;color: wheat; background-color: #fe3939; text-align: center; ">
     </div>
 
 </nav>
 <script type="text/javascript">
+    var needPrice = 0;
+    var reducePrice = 0;
     $(function () {
         setContent();
     });
+    var setBody = "";
+    var getCar = JSON.parse(cookieUtil.getCookie("car"));
+    for (var i = 0; i < getCar.length; i++) {
+        needPrice += getCar[i].g_price * getCar[i].num;
+        setBody += "<div class='row write_row'>" +
+            "<div class='col-sm-4 col-md-4' style='background-repeat: no-repeat ;text-align: center'>" +
+            "<a href='#' class='thumbnail'>" +
+            "<img src='" + getCar[i].g_img + "' class='img_product_car' alt='...'>" +
+            "</a>" +
+            "</div>" +
+            "<div class='col-sm-8 col-md-8' style='background-repeat: no-repeat ;text-align: center'>" +
+            "<div class='d-flex flex-column mb-3'>" +
+            "<div class='p-2 ' style='' padding:0.0rem !important;'>" +
+            "<p class='text-l'>" + getCar[i].g_name + " </p>" +
+            "</div>" +
+            "<div class='p-2 ' style='' padding:0.0rem !important;    text-align: left; '>" +
+            " <span style='color: red;font-weight: bold'>NT$&nbsp;&nbsp;" + getCar[i].g_price + "</span><span style='float:right; '>x " + getCar[i].num + "</span>" +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>";
+    }
 
     /*设置body内容*/
     function setContent() {
+        if (needPrice >= 1000 && needPrice < 2000)
+            reducePrice = 100;
+        else if (needPrice >= 2000)
+            reducePrice = 200;
+        $("#realPrice").append(needPrice - reducePrice);
+        $("#needPrice").append(needPrice);
+        $("#reducePrice").append(reducePrice);
+        $("#goods_subtotal").append(needPrice - reducePrice)
+        $("#Tags").after(setBody);
         /*$.post("/getProduct.html", {}, function (data) {
 
         });*/
         $("#content").html("<ul class='content list-paddingleft-2' style='list-style-type: none;'><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129620055.jpg' title='1521165129620055.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129817609.jpg' title='1521165129817609.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129792370.jpg' title='1521165129792370.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129244612.jpg' title='1521165129244612.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521184678936518.jpg' title='1521184678936518.jpg' alt='1_05.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129901432.jpg' title='1521165129901432.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129170887.jpg' title='1521165129170887.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129284591.jpg' title='1521165129284591.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129230270.jpg' title='1521165129230270.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129848691.jpg' title='1521165129848691.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165129365628.jpg' title='1521165129365628.jpg'/><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521185186309722.jpg' title='1521185186309722.jpg' alt='4696669510_1434053456.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521185162267022.jpg' title='1521185162267022.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521185162665462.jpg' title='1521185162665462.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521185163267666.jpg' title='1521185163267666.jpg'/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><br/></p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><img src='https://nrshop.s3-ap-southeast-1.amazonaws.com/ueditor/image/20180316/1521165139955916.jpg' title='1521165139955916.jpg' alt='1_15.jpg'/></p><ul class='midbox list-paddingleft-2' style='list-style-type: circle;'><li><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none; float: left; line-height: 20px; font-size: 16px;'>客戶評價</p><p><span class='btn1' style='margin: 0px auto; padding: 0px; box-sizing: border-box; text-shadow: none; overflow: hidden; border: none; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; display: block; width: auto; height: auto; line-height: 20px; border-radius: 3px; float: right;'>我要評價</span></p></li><li><p><br/></p></li><ul class='p-box list-paddingleft-2' style='margin: 0px; padding: 15px 0px 0px; box-sizing: border-box; text-shadow: none; overflow: hidden; line-height: 26px; clear: both;'><li><p><span class='tag' style='margin: 0px; padding: 0px; box-sizing: border-box; text-shadow: none; color: rgb(255, 255, 255); display: block; width: 42px; height: 42px; background: rgb(116, 199, 247); border-radius: 100%; font-size: 20px; line-height: 42px; text-align: center; position: absolute; left: 0px; top: -4px;'>周</span></p><p class='pl-name' style='margin-top: 0px; margin-right: 5px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none; height: 20px; font-size: 14px; line-height: 18px; color: rgb(68, 68, 68); float: left;'>周*瀠</p><p style='margin-top: 0px; margin-bottom: 0px; padding: 0px; box-sizing: border-box; text-shadow: none;'><span class='xing no1' style='margin: 1px 0px 0px; padding: 0px; box-sizing: border-box; text-shadow: none; background-image: url(&quot;../images/conent_star_icon.png&quot;); display: inline-block; width: 85px; height: 14px; background-position: 0px 0px; overflow: hidden; color: rgb(153, 153, 153);'></span></p><p><span style='margin: 0px; padding: 0px; box-sizing: border-box; text-shadow: none; color: rgb(153, 153, 153);'>2018/08/28</span></p></li></ul></ul></ul><p><br/></p>")
     }
 
-    var tIdOld = "";
-    var rIdOld = "";
-    var tcIdOld = "";
-    var rcIdOld = "";
-
-    function chooseOne(tId, rId) {
-        console.log("nice");
-        if (!tIdOld == "") {
-            $("#" + rIdOld).attr('checked', false);
-            $("#" + tIdOld).removeClass("addColor");
-        }
-        $("#" + rId).attr('checked', true);
-        $("#" + tId).addClass("addColor");
-        tIdOld = tId;
-        rIdOld = rId;
-    }
-
-    function chooseOneColor(tId, rId) {
-        console.log("nice");
-        if (!tcIdOld == "") {
-            $("#" + rcIdOld).attr('checked', false);
-            $("#" + tcIdOld).removeClass("addColor");
-        }
-        $("#" + rId).attr('checked', true);
-        $("#" + tId).addClass("addColor");
-        tcIdOld = tId;
-        rcIdOld = rId;
-    }
-
-    /*数量的变化*/
-    var countnum = 1;
-
-    /*增加 减少数量*/
-    function teamePrice(getMethod) {
-        countnum == $("#countNum").val()
-        if (getMethod == "1") {
-            if (countnum < 2) {
-                countnum = 1;
+    //  提交订单
+    function summitOrder() {
+        var form = new FormData(document.getElementById("subFormId"));
+        form.append("order",cookieUtil.getCookie("car"));
+        /*/sumOrder.do*/
+       if(verlidate()){
+           $.ajax({
+            url: "/sumOrder.do",
+            type: "post",
+            data: form,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                alert('提交成功');
+                window.location.reload();
+            },
+            error: function (e) {
+                alert("错误！！");
+                window.clearInterval(timer);
             }
-            else
-                countnum--;
-        }
-        if (getMethod == "3") {
-            countnum++;
-        }
-        $("#countNum").val(countnum);
+        });
+
     }
 
-    /*验证是否加入购物车没选颜色套餐的一律取消*/
-    function verificateShop() {
-        var getVal = $("#wrap1 input[name='optradio1']:checked ").val();
-        var getVal2 = $("#wrap2 input[name='optradio']:checked ").val();
-        if (getVal == undefined || getVal2 == undefined)
-            alert(getVal)
     }
 
-    /*设置va*/
+    function verlidate() {
+        //验证电话
+        var re = /^1\d{10}$/;
+        //验证email
+        var regEmail = /^\w+@[a-zA-Z0-9]{2,10}(?:\.[a-z]{2,4}){1,3}$/;
+        //验证中文
+        var regChines = /^[\u4E00-\u9FA5]{2,10}$/;
+        //验证邮编
+        var regPostCode=/^[0-9]{4,7}$/
+        //验证地址
+        var regAddress=/^[\u4E00-\u9FA5]{6,30}$/
+        /*定义验证表达式*/
+        /*postCode address Remarks*/
+        var vName = $("#name").val()
+        if (!regChines.test($.trim(vName))) {
+            layer.msg("姓名不能為空(2到10位中文)", {icon: 1, time: 2000})
+            $("#name").focus();
+            return false;
+        }
+        var vTel = $("#tel").val()
+        if (!re.test($.trim(vTel))) {
+            layer.msg("手機號碼格式不對", {icon: 1, time: 2000})
+            $("#tel").focus();
+            return false;
+        }
+        var vEmail = $("#email").val()
+        if (!regEmail.test($.trim(vEmail))) {
+            layer.msg("郵箱格式不對", {icon: 1, time: 2000})
+            $("#email").focus();
+            return false;
+        }
+        var vPostCode = $("#postCode").val()
+        if (!regPostCode.test($.trim(vPostCode))) {
+            layer.msg("郵編格式不對（eg:3000）", {icon: 1, time: 2000})
+            $("#postCode").focus();
+            return false;
+        }
+        var vAddress = $("#address").val()
+        if (!regAddress.test($.trim(vAddress))) {
+            layer.msg("地址不對（6到30位詳細描述）", {icon: 2, time: 2000})
+            $("#address").focus();
+            return false;
+        }
+       return true;
+    }
 </script>
 </body>
 

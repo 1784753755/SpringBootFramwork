@@ -10,4 +10,5 @@ public interface OrderDetailService {
 
     List<OrderDetail> getOrderDetail(String orderNum);
 
+    void addOrderDetail(OrderDetail orderDetail);
 }

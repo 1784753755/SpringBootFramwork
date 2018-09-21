@@ -11,8 +11,15 @@ import java.util.List;
 public class OrderDetailServiceImpl implements OrderDetailService {
     @Autowired
     private OrderDetailDao orderDetailDao;
+
     @Override
     public List<OrderDetail> getOrderDetail(String orderNum) {
         return  orderDetailDao.getDetailByOrderNum(orderNum);
+    }
+
+    @Override
+    public void addOrderDetail(OrderDetail orderDetail) {
+
+        orderDetailDao.insertOrderDetail(orderDetail);
     }
 }

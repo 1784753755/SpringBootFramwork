@@ -52,7 +52,12 @@ public class MyFilter implements Filter {
 
                 filterChain.doFilter(srequest, sresponse);
         } else {
+             try{
             filterChain.doFilter(srequest, sresponse);
+             }catch (Exception e){
+                 logger.error("No Such Method Find....Filter");
+                 return;
+             }
         }
         return;
     }

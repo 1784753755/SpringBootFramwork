@@ -38,6 +38,8 @@ public class TestDao {
     private FileDao fileDao;
     @Autowired
     private  PackageDao packageDao;
+    @Autowired
+    private OrderDetailDao orderDetailDao;
 
     //   @Test
     public void getAdmin() {
@@ -85,9 +87,6 @@ public class TestDao {
     @Test
     public  void testFileDao(){
 
-
-
-
-        packageDao.getAllPackage();
+        orderDetailDao.getDetailByOrderNum("LG15272331598388");
     }
 }

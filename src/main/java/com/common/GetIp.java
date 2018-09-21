@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Configuration
 public class GetIp {
-    public  String showCurrentIp(HttpServletRequest request){
+    public  static  String showCurrentIp(HttpServletRequest request){
          String ip = request.getHeader("x-forwarded-for");
           if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
@@ -21,5 +21,14 @@ public class GetIp {
             ip = "本地";
         }
        return ip;
+    }
+
+    public static String showCurrentUrl(HttpServletRequest request) {
+       return request.getHeader("Referer");
+      /*  String strBackUrl = "http://" + request.getServerName() + ":"
+                + request.getServerPort()
+                + request.getContextPath()
+                + request.getServletPath()
+                + "?" + (request.getQueryString());*/
     }
 }

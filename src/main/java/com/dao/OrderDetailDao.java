@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface OrderDetailDao {
       List<OrderDetail> getDetailByOrderNum(String orderNum);
+
+      void insertOrderDetail(OrderDetail orderDetail);
 }
